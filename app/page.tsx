@@ -1,40 +1,33 @@
+import AiAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
 import NavigationButtons from "@/components/navigation-buttons";
 import SearchIP from "@/components/searchIP";
 import SpeedSlider from "@/components/speed-slider";
+import StatusIndicator from "@/components/status-indicator";
+import { Card } from "@/components/ui/card";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 
 
 export default function Home() {
   return (
-    // <div className="flex flex-col p-12 gap-4">
-    //   <Header />
-    //   <Separator className="border" />
-    //   <SearchIP />
-    //   <CameraViewer />
-    //   <NavigationButtons />
-    //   <SpeedSlider />
-    // </div>
-
-
-
     <div className="flex flex-col p-12 gap-4">
       <Header />
-      <Separator className="border" />
       <SearchIP />
 
       <main className="flex flex-col md:flex-row gap-8">
         {/* Left side for camera */}
-        <div className="md:w-1/2 w-full">
+        <Card className="md:w-1/2 w-full p-6">
+          <StatusIndicator connected={false} />
           <CameraViewer />
-        </div>
+        </Card>
 
         {/* Right side for buttons */}
-        <div className="md:w-1/2 w-full flex flex-col gap-4 border p-16">
+        <Card className="md:w-1/2 w-full flex flex-col gap-4 p-4 lg:p-12">
           <NavigationButtons />
           <SpeedSlider />
-        </div>
+          <AiAssistant />
+        </Card>
       </main>
     </div>
 

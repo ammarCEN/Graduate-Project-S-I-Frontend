@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import "./page.css";
+
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
+import { ConnectionProvider } from "@/app/providers/api-provider";
+
 
 
 const geistSans = Geist({
@@ -33,14 +36,14 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <main>
+          <ConnectionProvider>
             {children}
-          </main>
-          <Toaster />
+          </ConnectionProvider>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>
