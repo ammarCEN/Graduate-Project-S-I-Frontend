@@ -1,6 +1,9 @@
+// 'use client';
+
 import AiAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
+import LiveLogger from "@/components/live-log";
 import NavigationButtons from "@/components/navigation-buttons";
 import SearchIP from "@/components/searchIP";
 import SpeedSlider from "@/components/speed-slider";
@@ -14,6 +17,8 @@ export default function Home() {
     <div className="flex flex-col p-12 gap-4">
       <Header />
       <SearchIP />
+
+
 
       <main className="flex flex-col md:flex-row gap-8">
         {/* Left side for camera */}
@@ -29,6 +34,12 @@ export default function Home() {
           <AiAssistant />
         </Card>
       </main>
+
+
+
+      <footer>
+        <LiveLogger />
+      </footer>
     </div>
 
 

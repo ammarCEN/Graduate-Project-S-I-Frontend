@@ -23,7 +23,7 @@ import {
 import { Checkbox } from "./ui/checkbox";
 
 function SearchIP() {
-    const { setApiBase, setConnected, connected } = useConnection();
+    const { setApiBase, setIsConnected, isConnected } = useConnection();
 
     const [isSearching, setIsSearching] = useState(false);
     const [isPorted, setIsPorted] = useState(false);
@@ -56,7 +56,7 @@ function SearchIP() {
             if (!res.ok) throw new Error("Bad response");
 
             setApiBase(base);
-            setConnected(true);
+            setIsConnected(true);
             toast.success("Robot now is connected");
         } catch {
             toast.error("Failed to connect");
@@ -138,7 +138,7 @@ function SearchIP() {
                             <LoaderIcon className="animate-spin" />
                         </Button>
                     )}
-                    <StatusIndicator className="border p-2 rounded-lg" connected={connected} />
+                    <StatusIndicator className="border p-2 rounded-lg" connected={isConnected} />
                 </div>
             </form>
         </Card>

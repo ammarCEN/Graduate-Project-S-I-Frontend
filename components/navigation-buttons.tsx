@@ -1,6 +1,6 @@
 'use client';
 
-import { moveBackward, moveForward } from '@/lib/api/api';
+import { moveBackward, moveForward, stopRobot } from '@/lib/api/api';
 import { Button } from './ui/button'
 import { MoveUp, MoveDown, MoveLeft, MoveRight, Siren } from "lucide-react";
 import { getSpeed } from '@/lib/speed';
@@ -11,23 +11,38 @@ import { toast } from 'sonner';
 
 const NavigationButtons = () => {
     const buttonSize = "";
+    const { apiBase, addLog } = useConnection();
 
-    const { apiBase } = useConnection();
-
-    const handleMovingForward = () => {
+    const handleMovingForward = async () => {
         if (!apiBase) {
             toast.error("No connection!");
+            addLog("Cannot move — robot not connected");
             return
         }
-        moveForward(apiBase, getSpeed());
+        const data = await moveForward(apiBase, getSpeed());
+
+        addLog(data);
     }
 
-    const handleMovingBackward = () => {
+    const handleMovingBackward = async () => {
+        if (!apiBase) {
+            toast.error("No connection!");
+            addLog("Cannot move — robot not connected");
+            return
+        }
+        const data = await moveBackward(apiBase, getSpeed());
+
+        addLog(data);
+    }
+
+    const handleEmergencyStop = async () => {
         if (!apiBase) {
             toast.error("No connection!");
             return
         }
-        moveBackward(apiBase, getSpeed());
+        const data = await stopRobot(apiBase);
+
+        addLog(data);
     }
 
     return (
@@ -46,7 +61,7 @@ const NavigationButtons = () => {
                     </Button>
 
                     {/* زر الطوارئ في الوسط */}
-                    <Button className="bg-red-600 hover:bg-red-700 text-white h-full">
+                    <Button className="bg-red-600 hover:bg-red-700 text-white h-full" onClick={handleEmergencyStop}>
                         Emergency Stop <Siren />
                     </Button>
 

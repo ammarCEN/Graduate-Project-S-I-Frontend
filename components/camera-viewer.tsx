@@ -6,29 +6,33 @@ import { toast } from "sonner";
 
 
 function CameraViewer() {
-    const { apiBase, connected } = useConnection();
+    const { apiBase, isConnected } = useConnection();
 
-    // // Immediately refresh
-    // const [key, setKey] = useState(Date.now());
+    // const handleCameraFeed = async () => {
+    //     if (!apiBase)
+    //         return;
+    //     const data = await videoFeedURL(apiBase);
+    //     console.log("Backend response:", data);
 
-    // toast.info(`API FETCH: ${videoFeedURL(apiBase!)}`);
-    // toast.info("DIRECT URL: http://192.168.8.183:8081/video");
+    //     return data;
+    // }
+
     return (
         <div className="w-full">
-            {!connected || !apiBase
+            {!isConnected || !apiBase
                 ?
                 <NoCameraFeed />
                 :
                 <img
-                    // key={key}
                     className="w-full p-4 rounded-xl"
-                    // src={videoFeedURL(apiBase!)}
-                    src="http://192.168.8.183:8081/video"
+                    // src={handleCameraFeed}
+                    // src='http://192.168.8.183:8081/video'
+                    src={videoFeedURL(apiBase)}
                     alt="Camera feed"
-                // onError={() => {
-                //     setKey(Date.now())
-                //     toast.success("Camera refreshed successfully.")
-                // }}
+                    onError={() => {
+                        // setKey(Date.now())
+
+                    }}
                 >
                 </img>
             }

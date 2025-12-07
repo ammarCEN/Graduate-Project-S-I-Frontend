@@ -2,31 +2,52 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type ConnectionContextType = {
-    connected: boolean;
-    setConnected: (val: boolean) => void;
+    isConnected: boolean;
+    setIsConnected: (val: boolean) => void;
+
     apiBase: string | null;
     setApiBase: (val: string | null) => void;
+
+    logs: string[];
+    addLog: (entry: any) => void;
+    clearLogs: () => void;
 };
 
 const ConnectionContext = createContext<ConnectionContextType | undefined>(undefined);
 
 export function ConnectionProvider({ children }: { children: ReactNode }) {
-    const [connected, setConnected] = useState(false);
-    const [apiBase, setApiBase] = useState<string | null>(null);
 
-    // مثال: تحقق من صحة الرابط تلقائياً كل 3 ثواني
+    const [apiBase, setApiBase] = useState<string | null>(process.env.NEXT_PUBLIC_API_BASE || null);
+    const [isConnected, setIsConnected] = useState(false);
+    const [logs, setLogs] = useState<string[]>([]);
+
+
+    const addLog = (entry: any) => {
+        const formatted =
+            typeof entry === "string"
+                ? entry
+                : Object.entries(entry)
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join(" | ");
+
+        setLogs(prev => [...prev, `▶ ${formatted}`]);
+    };
+
+    const clearLogs = () => setLogs([]);
+
+    // Check connection each 3 seconds
     useEffect(() => {
         if (!apiBase) {
-            setConnected(false);
+            setIsConnected(false);
             return;
         }
 
         const interval = setInterval(async () => {
             try {
                 const res = await fetch(`${apiBase}/`);
-                setConnected(res.ok);
+                setIsConnected(res.ok);
             } catch {
-                setConnected(false);
+                setIsConnected(false);
             }
         }, 3000);
 
@@ -34,7 +55,15 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     }, [apiBase]);
 
     return (
-        <ConnectionContext.Provider value={{ connected, setConnected, apiBase, setApiBase }}>
+        <ConnectionContext.Provider value={{
+            apiBase,
+            setApiBase,
+            isConnected,
+            setIsConnected,
+            logs,
+            addLog,
+            clearLogs
+        }}>
             {children}
         </ConnectionContext.Provider>
     );
