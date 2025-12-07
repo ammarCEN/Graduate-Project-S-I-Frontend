@@ -1,59 +1,38 @@
-// --- AI Control ---
-export const startAI = async (BASE: string) => {
+function extractPreContent(html: string) {
+    const match = html.match(/<pre>([\s\S]*?)<\/pre>/i);
+    return match ? match[1] : html;
+}
+
+async function safeFetch<T>(fetchPromise: Promise<Response>): Promise<T & { error?: string }> {
     try {
-        const res = await fetch(`${BASE}/vision/toggle/on`);
-        if (!res.ok) return { error: "Couldn't reach endpoint" };
+        const res = await fetchPromise;
+        if (!res.ok) {
+            const text = await res.text().catch(() => "");
+            return { ERROR: `Endpoint returned ${res.status}: ${extractPreContent(text)}` } as any;
+        }
         return await res.json();
     } catch (err: any) {
-        console.error("startAI failed:", err);
-        return { status: "error", message: "Couldn't reach endpoint" }; // err.message
+        console.error("Fetch failed:", err);
+        return { ERROR: `[UNEXPECTED ERROR] ${err.message}` } as any;
     }
 }
 
-export const stopAI = async (BASE: string) => {
-    try {
-        const res = await fetch(`${BASE}/vision/toggle/off`);
-        if (!res.ok) return { error: "Couldn't reach endpoint" };
-        return await res.json();
-    } catch (err: any) {
-        console.error("stopAI failed:", err);
-        return { error: "Couldn't reach endpoint" };
-    }
-}
+// --- AI Control ---
+export const startAI = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/vision/toggle/on`));
+
+export const stopAI = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/vision/toggle/off`));
 
 // --- Motor Control ---
-export const moveForward = async (BASE: string, speed = 0.6) => {
-    try {
-        const res = await fetch(`${BASE}/motor/move/forward?speed=${speed}`, { method: "POST" });
-        if (!res.ok) return { error: "Couldn't reach endpoint" };
-        return await res.json();
-    } catch (err: any) {
-        console.error("moveForward failed:", err);
-        return { status: "[UNEXPECTED ERROR]", message: err.message };
-    }
-}
+export const moveForward = (BASE: string, speed = 0.6) =>
+    safeFetch(fetch(`${BASE}/motor/move/forward?speed=${speed}`, { method: "POST" }));
 
-export const moveBackward = async (BASE: string, speed = 0.6) => {
-    try {
-        const res = await fetch(`${BASE}/motor/move/backward?speed=${speed}`, { method: "POST" });
-        if (!res.ok) return { error: "Couldn't reach endpoint" };
-        return await res.json();
-    } catch (err: any) {
-        console.error("moveBackward failed:", err);
-        return { error: "Couldn't reach endpoint" };
-    }
-}
+export const moveBackward = (BASE: string, speed = 0.6) =>
+    safeFetch(fetch(`${BASE}/motor/move/backward?speed=${speed}`, { method: "POST" }));
 
-export const stopRobot = async (BASE: string) => {
-    try {
-        const res = await fetch(`${BASE}/motor/stop`, { method: "POST" });
-        if (!res.ok) return { error: "Couldn't reach endpoint" };
-        return await res.json();
-    } catch (err: any) {
-        console.error("stopRobot failed:", err);
-        return { error: "Couldn't reach endpoint" };
-    }
-}
+export const stopRobot = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/motor/stop`, { method: "POST" }));
 
 // --- Video Feed ---
 export const videoFeedURL = (BASE: string) => `${BASE}/video_feed`;

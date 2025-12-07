@@ -47,6 +47,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
                 const res = await fetch(`${apiBase}/`);
                 setIsConnected(res.ok);
             } catch {
+                setApiBase(process.env.NEXT_PUBLIC_API_BASE || null)
                 setIsConnected(false);
             }
         }, 3000);
