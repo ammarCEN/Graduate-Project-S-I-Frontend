@@ -38,6 +38,7 @@ const NavigationButtons = () => {
     const handleEmergencyStop = async () => {
         if (!apiBase) {
             toast.error("No connection!");
+            addLog("Cannot execute — robot not connected");
             return
         }
         const data = await stopRobot(apiBase);

@@ -23,7 +23,7 @@ import {
 import { Checkbox } from "./ui/checkbox";
 
 function SearchIP() {
-    const { setApiBase, setIsConnected, isConnected } = useConnection();
+    const { setApiBase, setIsConnected, isConnected, addLog } = useConnection();
 
     const [isSearching, setIsSearching] = useState(false);
     const [isPorted, setIsPorted] = useState(false);
@@ -48,7 +48,8 @@ function SearchIP() {
         else {
             base = `${protocol}://${ip}`;
         }
-        toast.info(`URL: ${base}`);
+        // toast.info(`Entered URL is: ${base}`);
+        addLog({ "Trying to connect": base });
 
         try {
             const res = await fetch(`${base}/`);
@@ -58,8 +59,11 @@ function SearchIP() {
             setApiBase(base);
             setIsConnected(true);
             toast.success("Robot now is connected");
+            addLog({ "Robot Connection Status": "Robot now is connected" });
+
         } catch {
             toast.error("Failed to connect");
+            addLog({ "Robot Connection Status": "Failed to connect" });
             // setConnected(false);
         }
 
@@ -99,7 +103,7 @@ function SearchIP() {
                     {/* PORT */}
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <InputGroup className="w-full md:flex-1 pr-4">
+                            <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
                                 <InputGroupInput
                                     placeholder="Port NO."
                                     disabled={isSearching || !isPorted}
