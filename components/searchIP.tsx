@@ -21,6 +21,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
 
 function SearchIP() {
     const { setApiBase, setIsConnected, isConnected, addLog } = useConnection();
@@ -78,75 +79,94 @@ function SearchIP() {
                     handleConnect();
                 }}
             >
-                <div className="flex flex-wrap items-center w-full gap-2 px-4 lg:px-6">
-                    {/* PROTOCOL SELECT */}
-                    <Select value={protocol} onValueChange={setProtocol}>
-                        <SelectTrigger className="w-full md:flex-1">
-                            <SelectValue placeholder="http" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="http">http</SelectItem>
-                            <SelectItem value="https">https</SelectItem>
-                        </SelectContent>
-                    </Select>
+                <div className="flex flex-wrap justify-between items-center w-full gap-2 px-4 lg:px-6">
 
-                    {/* IP */}
-                    <InputGroup className="w-full md:flex-4">
-                        <InputGroupInput
-                            placeholder={isPorted ? "192.168.8.183 or localhost" : "backend-service-example.com"}
-                            disabled={isSearching}
-                            value={ip}
-                            onChange={(e) => setIp(e.target.value)}
-                        />
-                    </InputGroup>
+                    {process.env.NEXT_PUBLIC_API_BASE && (
+                        <>
+                            <Label className="font-mono">
+                                {process.env.NEXT_PUBLIC_API_BASE}
+                            </Label>
+                        </>
+                    )}
 
-                    {/* PORT */}
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
+                    {!process.env.NEXT_PUBLIC_API_BASE && (
+                        <>
+                            {/* PROTOCOL SELECT */}
+                            <Select value={protocol} onValueChange={setProtocol}>
+                                <SelectTrigger className="w-full md:flex-1">
+                                    <SelectValue placeholder="http" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="http">http</SelectItem>
+                                    <SelectItem value="https">https</SelectItem>
+                                </SelectContent>
+                            </Select>
+
+                            {/* IP */}
+                            <InputGroup className="w-full md:flex-4">
                                 <InputGroupInput
-                                    placeholder="Port NO."
-                                    disabled={isSearching || !isPorted}
-                                    value={port}
-                                    onChange={(e) => setPort(e.target.value)}
+                                    placeholder={isPorted ? "192.168.8.183 or localhost" : "backend-service-example.com"}
+                                    disabled={isSearching}
+                                    value={ip}
+                                    onChange={(e) => setIp(e.target.value)}
                                 />
-                                <div className="flex gap-2">
-                                    <Checkbox
-                                        id="ported"
-                                        checked={isPorted}
-                                        onCheckedChange={(val) => setIsPorted(Boolean(val))}
-                                    />
-                                    <label
-                                        htmlFor="ported"
-                                        className="text-sm font-medium leading-none cursor-pointer"
-                                    >
-                                        Enable Port
-                                    </label>
-                                </div>
                             </InputGroup>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>Port Number</p>
-                        </TooltipContent>
-                    </Tooltip>
 
-                    {/* Connect Button */}
-                    {!isSearching && (
-                        <Button>
-                            Connect
-                        </Button>
+                            {/* PORT */}
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
+                                        <InputGroupInput
+                                            placeholder="Port NO."
+                                            disabled={isSearching || !isPorted}
+                                            value={port}
+                                            onChange={(e) => setPort(e.target.value)}
+                                        />
+                                        <div className="flex gap-2">
+                                            <Checkbox
+                                                id="ported"
+                                                checked={isPorted}
+                                                onCheckedChange={(val) => setIsPorted(Boolean(val))}
+                                            />
+                                            <label
+                                                htmlFor="ported"
+                                                className="text-sm font-medium leading-none cursor-pointer"
+                                            >
+                                                Enable Port
+                                            </label>
+                                        </div>
+                                    </InputGroup>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Port Number</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            {/* Connect Button */}
+                            {!isSearching && (
+                                <Button>
+                                    Connect
+                                </Button>
+                            )}
+
+                            {isSearching && (
+                                <Button disabled>
+                                    <LoaderIcon className="animate-spin" />
+                                </Button>
+                            )}
+                        </>
                     )}
 
-                    {isSearching && (
-                        <Button disabled>
-                            <LoaderIcon className="animate-spin" />
-                        </Button>
-                    )}
+                    {/* Status Indicator */}
                     <StatusIndicator className="border p-2 rounded-lg" connected={isConnected} />
                 </div>
             </form>
         </Card>
     );
+}
+
+function searchForURL() {
+    return
 }
 
 export default SearchIP
