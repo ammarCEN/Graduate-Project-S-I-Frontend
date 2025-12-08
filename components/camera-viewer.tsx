@@ -3,40 +3,55 @@ import useConnection from "@/app/providers/api-provider";
 import { videoFeedURL } from "@/lib/api/api";
 import NoCameraFeed from "./no-camera-feed";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import StatusIndicator from "./status-indicator";
 
 
 function CameraViewer() {
-    const { apiBase, isConnected } = useConnection();
+    const { apiBase, isConnected, addLog } = useConnection();
 
-    // const handleCameraFeed = async () => {
-    //     if (!apiBase)
-    //         return;
-    //     const data = await videoFeedURL(apiBase);
-    //     console.log("Backend response:", data);
+    const [isCameraFeed, setIsCameraFeed] = useState(false);
+    const [refreshTrigger, setRefreshTrigger] = useState(false);
 
-    //     return data;
-    // }
+    useEffect(() => {
+        if (!apiBase || !isConnected) {
+            setIsCameraFeed(false);
+            return;
+        }
+
+        setIsCameraFeed(true);
+        addLog(`Trying to fetch camera feed → ${videoFeedURL(apiBase)}`);
+    }, [apiBase, isConnected, refreshTrigger]);
 
     return (
-        <div className="w-full">
-            {!isConnected || !apiBase
-                ?
-                <NoCameraFeed />
-                :
-                <img
-                    className="w-full p-4 rounded-xl"
-                    // src={handleCameraFeed}
-                    // src='http://192.168.8.183:8081/video'
-                    src={videoFeedURL(apiBase)}
-                    alt="Camera feed"
-                    onError={() => {
-                        // setKey(Date.now())
-
-                    }}
-                >
-                </img>
-            }
-        </div>
+        <>
+            <StatusIndicator connected={isCameraFeed} />
+            <div className="w-full">
+                {!isConnected || !apiBase || !isCameraFeed
+                    ?
+                    <NoCameraFeed onRefresh={() => setRefreshTrigger(!refreshTrigger)} />
+                    :
+                    <img
+                        className="w-full p-4 rounded-xl"
+                        // src={handleCameraFeed}
+                        // src='http://192.168.8.183:8081/video'
+                        src={videoFeedURL(apiBase)}
+                        alt="Camera feed"
+                        onError={() => {
+                            setIsCameraFeed(false);
+                            toast.error("No camera feed!");
+                            if (!isConnected) {
+                                addLog("Camera feed failed — robot not connected");
+                            }
+                            else {
+                                addLog("Camera feed failed to fetch");
+                            }
+                        }}
+                    >
+                    </img>
+                }
+            </div>
+        </>
     )
 }
 

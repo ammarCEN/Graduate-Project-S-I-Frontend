@@ -11,7 +11,7 @@ import {
     EmptyTitle,
 } from "@/components/ui/empty"
 
-function NoCameraFeed() {
+function NoCameraFeed({ onRefresh }: { onRefresh: () => void }) {
     return (
         <Empty>
             <EmptyHeader>
@@ -24,7 +24,7 @@ function NoCameraFeed() {
                 </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={onRefresh}>
                     <RefreshCcwIcon />
                     Refresh
                 </Button>
