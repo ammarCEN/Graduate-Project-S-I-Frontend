@@ -5,8 +5,9 @@ import { Button } from './ui/button'
 import { MoveUp, MoveDown, MoveLeft, MoveRight, Siren } from "lucide-react";
 import { getSpeed } from '@/lib/speed';
 import useConnection from '@/app/providers/api-provider';
-import { Card, CardContent } from './ui/card';
+import { Card, CardContent, CardFooter } from './ui/card';
 import { toast } from 'sonner';
+import MovementButton, { Direction } from './single-navigarion-button';
 
 
 const NavigationButtons = () => {
@@ -81,6 +82,21 @@ const NavigationButtons = () => {
 
                 </div>
             </CardContent>
+            <CardFooter>
+                <div className='flex flex-col items-center justify-center gap-2'>
+                    <div>
+                        <p className="text-sm text-gray-500"><b>DEVELOPER NOTES:</b> These bottom buttons are interactive navigation buttons improved from those at the top to start moving until unclicking and then automatically stopping the robot.</p>
+                        <p className="text-sm text-gray-500 italic">Please contact me to confirm replacement.</p>
+                    </div>
+                    <MovementButton action={Direction.Forward} icon={<MoveUp />} />
+                    <span className='flex items-center justify-center gap-2'>
+                        <MovementButton action={Direction.Left} icon={<MoveLeft />} />
+                        <MovementButton action={Direction.Backward} icon={<MoveDown />} />
+                        <MovementButton action={Direction.Right} icon={<MoveRight />} />
+                    </span>
+
+                </div>
+            </CardFooter>
         </Card>
 
     )
