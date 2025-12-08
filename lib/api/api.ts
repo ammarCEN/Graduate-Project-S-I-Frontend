@@ -19,10 +19,10 @@ async function safeFetch<T>(fetchPromise: Promise<Response>): Promise<T & { erro
 
 // --- AI Control ---
 export const startAI = (BASE: string) =>
-    safeFetch(fetch(`${BASE}/vision/toggle/on`));
+    safeFetch(fetch(`${BASE}/vision/toggle/on`, { method: "POST" }));
 
 export const stopAI = (BASE: string) =>
-    safeFetch(fetch(`${BASE}/vision/toggle/off`));
+    safeFetch(fetch(`${BASE}/vision/toggle/off`, { method: "POST" }));
 
 // --- Motor Control ---
 export const moveForward = (BASE: string, speed = 0.6) =>

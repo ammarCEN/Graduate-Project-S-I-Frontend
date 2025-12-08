@@ -1,6 +1,6 @@
 // 'use client';
 
-import AiAssistant from "@/components/ai-assistant";
+import AIAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
 import LiveLogger from "@/components/live-log";
@@ -23,7 +23,6 @@ export default function Home() {
       <main className="flex flex-col md:flex-row gap-8">
         {/* Left side for camera */}
         <Card className="md:w-1/2 w-full p-6">
-          <StatusIndicator connected={false} />
           <CameraViewer />
         </Card>
 
@@ -31,7 +30,7 @@ export default function Home() {
         <Card className="md:w-1/2 w-full flex flex-col gap-4 p-4 lg:p-12">
           <NavigationButtons />
           <SpeedSlider />
-          <AiAssistant />
+          <AIAssistant />
         </Card>
       </main>
 
