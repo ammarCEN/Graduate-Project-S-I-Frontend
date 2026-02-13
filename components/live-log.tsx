@@ -14,27 +14,22 @@ const LiveLogger = () => {
                 Live logger: {" "}
                 <span onClick={clearLogs} className="text-sm text-blue-500 underline cursor-pointer">clear log</span>
             </CardTitle>
-            <CardContent>
-                <div className="border font-mono h-64 overflow-auto p-2 rounded-lg">
-                    {logs.map((line, i) => (
-                        <div
-                            key={i}
-                            className="
+
+            <div className="border font-mono h-64 overflow-auto rounded-lg">
+                {logs.map((line, i) => (
+                    <div
+                        key={i}
+                        className="
                             flex
                             even:bg-gray-100 odd:bg-white
                             dark:even:bg-gray-800 dark:odd:bg-transparent"
-                        >
-                            <span className="w-8 text-right pr-2 text-gray-500">{i + 1}.</span>
-                            <span>{line}</span>
-                        </div>
-                    ))}
-                </div>
-                {/* <Textarea
-                    className="font-mono h-64 overflow-auto resize-none"
-                    value={logs.join("\n")}
-                    readOnly
-                /> */}
-            </CardContent>
+                    >
+                        <span className="w-8 text-right pr-2 text-gray-500">{i + 1}.</span>
+                        <span>{line}</span>
+                    </div>
+                ))}
+            </div>
+
         </Card>
     )
 }

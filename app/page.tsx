@@ -14,7 +14,7 @@ import { Separator } from "@radix-ui/react-dropdown-menu";
 
 export default function Home() {
   return (
-    <div className="flex flex-col p-12 gap-4">
+    <div className="flex flex-col p-6 gap-4 md:p-12 md:gap-6">
       <Header />
       <SearchIP />
 
