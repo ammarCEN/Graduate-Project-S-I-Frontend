@@ -31,6 +31,12 @@ export const moveForward = (BASE: string, speed = 0.6) =>
 export const moveBackward = (BASE: string, speed = 0.6) =>
     safeFetch(fetch(`${BASE}/motor/move/backward?speed=${speed}`, { method: "POST" }));
 
+export const moveRight = (BASE: string, speed = 0.6) =>
+    safeFetch(fetch(`${BASE}/motor/move/right?speed=${speed}`, { method: "POST" }));
+
+export const moveLeft = (BASE: string, speed = 0.6) =>
+    safeFetch(fetch(`${BASE}/motor/move/left?speed=${speed}`, { method: "POST" }));
+
 export const stopRobot = (BASE: string) =>
     safeFetch(fetch(`${BASE}/motor/stop`, { method: "POST" }));
 

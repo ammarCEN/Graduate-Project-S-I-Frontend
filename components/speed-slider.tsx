@@ -5,6 +5,8 @@ import { Slider } from "@/components/ui/slider";
 import { setSpeed, getSpeed } from "@/lib/speed";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Card, CardContent } from "./ui/card";
+import styles from '@/app/global.module.css';
+
 
 export default function SpeedSlider() {
     const [value, setValue] = useState<number[]>([getSpeed()]);
@@ -12,8 +14,10 @@ export default function SpeedSlider() {
     return (
         <Card>
             <CardContent>
-                <h1 className="font-bold">Movement Speed: {Math.round(value[0] * 100)}%</h1>
-                <p className="text-sm text-gray-500">Adjust the movement speed. Minimum is 20% and maximum is 100%.</p>
+                <div className={styles.headerTitle}>
+                    <h1>Movement Speed: {Math.round(value[0] * 100)}%</h1>
+                    <p>Adjust the movement speed. Minimum is 20% and maximum is 100%.</p>
+                </div>
                 <Slider
                     className="h-12"
                     value={value}

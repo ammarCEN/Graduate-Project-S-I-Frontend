@@ -8,6 +8,7 @@ import useConnection from '@/app/providers/api-provider';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { toast } from 'sonner';
 import MovementButton, { Direction } from './single-navigarion-button';
+import styles from '@/app/global.module.css';
 
 
 const NavigationButtons = () => {
@@ -50,43 +51,10 @@ const NavigationButtons = () => {
     return (
         <Card>
             <CardContent>
-                {/* <h1 className="font-bold">Navigation Control</h1>
-                <p className="text-sm text-gray-500">Buttons for controlling robot movement.</p> */}
-                <div className="flex flex-col items-center justify-center gap-4">
-
-                    {/* زر التحرك للأعلى */}
-                    <Button className={buttonSize} onClick={handleMovingForward}>
-                        <MoveUp />
-                    </Button>
-
-                    {/* صف أزرار اليسار واليمين + زر الطوارئ في الوسط */}
-                    <div className="flex items-center gap-4">
-                        <Button className={buttonSize}>
-                            <MoveLeft />
-                        </Button>
-
-                        {/* زر الطوارئ في الوسط */}
-                        <Button className="bg-red-600 hover:bg-red-700 text-white h-full" onClick={handleEmergencyStop}>
-                            Emergency Stop <Siren />
-                        </Button>
-
-                        <Button className={buttonSize}>
-                            <MoveRight />
-                        </Button>
-                    </div>
-
-                    {/* زر التحرك للأسفل */}
-                    <Button className={buttonSize} onClick={handleMovingBackward}>
-                        <MoveDown />
-                    </Button>
-
-                </div>
-            </CardContent>
-            <CardFooter>
                 <div className='flex flex-col items-center justify-center gap-2'>
-                    <div>
-                        <p className="text-sm text-gray-500"><b>DEVELOPER NOTES:</b> These bottom buttons are interactive navigation buttons improved from those at the top to start moving until unclicking and then automatically stopping the robot.</p>
-                        <p className="text-sm text-gray-500 italic">Please contact me to confirm replacement.</p>
+                    <div className={styles.headerTitle}>
+                        <h1>Movement Buttons</h1>
+                        <p>These bottom buttons are interactive navigation buttons to start moving until unclicking and then automatically stopping the robot.</p>
                     </div>
                     <MovementButton action={Direction.Forward} icon={<MoveUp />} />
                     <span className='flex items-center justify-center gap-2'>
@@ -96,6 +64,12 @@ const NavigationButtons = () => {
                     </span>
 
                 </div>
+            </CardContent>
+            <CardFooter>
+                {/* زر الطوارئ في الوسط */}
+                <Button className="w-full bg-red-600 hover:bg-red-700 text-white h-full" onClick={handleEmergencyStop}>
+                    Emergency Stop <Siren />
+                </Button>
             </CardFooter>
         </Card>
 

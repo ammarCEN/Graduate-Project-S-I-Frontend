@@ -1,0 +1,11 @@
+.headerTitle {
+    h1 {
+        font-weight: 700;
+        /* font-bold */
+    }
+
+    p {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+}

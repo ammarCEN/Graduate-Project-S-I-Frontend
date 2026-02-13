@@ -6,6 +6,8 @@ import { Switch } from "./ui/switch";
 import { toast } from "sonner";
 import { useState } from "react";
 import { startAI, stopAI } from "@/lib/api/api";
+import styles from '@/app/global.module.css';
+
 
 const AIAssistant = () => {
     const [isEnable, setIsEnable] = useState(true);
@@ -36,9 +38,9 @@ const AIAssistant = () => {
     return (
         <Card>
             <CardContent className="flex justify-between items-center">
-                <div>
-                    <h1 className="font-bold">AI Assistant</h1>
-                    <p className="text-sm text-gray-500">Enable or disable AI classification boxes.</p>
+                <div className={styles.headerTitle}>
+                    <h1>AI Assistant</h1>
+                    <p>Enable or disable AI classification boxes.</p>
                 </div>
                 <Switch disabled={!isConnected} checked={isEnable} onCheckedChange={handleToggleVision}></Switch>
             </CardContent>

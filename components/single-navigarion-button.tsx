@@ -1,6 +1,6 @@
 'use client';
 
-import { moveForward, moveBackward, stopRobot } from '@/lib/api/api';
+import { moveForward, moveBackward, stopRobot, moveRight, moveLeft } from '@/lib/api/api';
 import useConnection from '@/app/providers/api-provider';
 import { getSpeed } from '@/lib/speed';
 import { Button } from './ui/button';
@@ -41,6 +41,12 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
                     break;
                 case Direction.Backward:
                     data = await moveBackward(apiBase, getSpeed());
+                    break;
+                case Direction.Right:
+                    data = await moveRight(apiBase, getSpeed());
+                    break;
+                case Direction.Left:
+                    data = await moveLeft(apiBase, getSpeed());
                     break;
                 default:
                     data = { "Direction": `${action} not implemented yet` }
