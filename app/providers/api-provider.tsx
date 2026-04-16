@@ -8,6 +8,12 @@ type ConnectionContextType = {
     apiBase: string | null;
     setApiBase: (val: string | null) => void;
 
+    isVisionOn: boolean;
+    setIsVisionOn: (val: boolean) => void;
+
+    isPumpOn: boolean;
+    setIsPumpOn: (val: boolean) => void;
+
     logs: string[];
     addLog: (entry: any) => void;
     clearLogs: () => void;
@@ -20,6 +26,10 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     const [apiBase, setApiBase] = useState<string | null>(process.env.NEXT_PUBLIC_API_BASE || null);
     const [isConnected, setIsConnected] = useState(false);
     const [logs, setLogs] = useState<string[]>([]);
+
+    // Controls
+    const [isVisionOn, setIsVisionOn] = useState<boolean>(true);
+    const [isPumpOn, setIsPumpOn] = useState<boolean>(false);
 
 
     const addLog = (entry: any) => {
@@ -61,6 +71,10 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
             setApiBase,
             isConnected,
             setIsConnected,
+            isPumpOn,
+            setIsPumpOn,
+            isVisionOn,
+            setIsVisionOn,
             logs,
             addLog,
             clearLogs

@@ -21,7 +21,7 @@ export default function SpeedSlider() {
                 <Slider
                     className="h-12"
                     value={value}
-                    min={0.2}
+                    min={0}
                     max={1}
                     step={0.05}
                     onValueChange={(val: number[]) => {

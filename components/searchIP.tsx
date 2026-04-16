@@ -109,6 +109,8 @@ function SearchIP() {
                                     disabled={isSearching}
                                     value={ip}
                                     onChange={(e) => setIp(e.target.value)}
+                                    name="a"
+                                    autoComplete="a"
                                 />
                             </InputGroup>
 

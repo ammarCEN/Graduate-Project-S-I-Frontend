@@ -5,42 +5,45 @@ import { Card, CardContent } from "./ui/card";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
 import { useState } from "react";
+import { PumpOff, PumpOn } from "@/lib/api/api";
 import styles from '@/app/global.module.css';
 
 
-const AIAssistant = () => {
+const PumpControl = () => {
+    const [isEnable, setIsEnable] = useState(false);
     const { apiBase, isConnected, addLog } = useConnection();
-    const { isVisionOn, setIsVisionOn } = useConnection();
 
-    const handleToggleVision = async () => {
+    const handleTogglePump = async () => {
         if (!apiBase) {
             toast.error("No connection!");
-            addLog("Cannot toggle vision — robot not connected");
+            addLog("Cannot toggle pump — robot not connected");
+            // setIsEnable(false);
             return;
         }
 
         let data;
-        if (isVisionOn) {
-            setIsVisionOn(false);
-            data = "ADMIN: Camera Vision Off";
+        if (isEnable) {
+            data = await PumpOff(apiBase);
+            setIsEnable(false);
         }
         else {
-            setIsVisionOn(true);
-            data = "ADMIN: Camera Vision On";
+            data = await PumpOn(apiBase);
+            setIsEnable(true);
         }
+
         addLog(data);
     }
     return (
         <Card>
             <CardContent className="flex justify-between items-center">
                 <div className={styles.headerTitle}>
-                    <h1>AI Assistant</h1>
-                    <p>Enable or disable AI classification boxes.</p>
+                    <h1>Pump Control</h1>
+                    <p>Enable or disable pump control.</p>
                 </div>
-                <Switch disabled={!isConnected} checked={isVisionOn} onCheckedChange={handleToggleVision}></Switch>
+                <Switch disabled={!isConnected} checked={isEnable} onCheckedChange={handleTogglePump}></Switch>
             </CardContent>
         </Card>
     )
 }
 
-export default AIAssistant
+export default PumpControl

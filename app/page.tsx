@@ -5,6 +5,7 @@ import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
 import LiveLogger from "@/components/live-log";
 import NavigationButtons from "@/components/navigation-buttons";
+import PumpControl from "@/components/pump-control";
 import SearchIP from "@/components/searchIP";
 import SpeedSlider from "@/components/speed-slider";
 import StatusIndicator from "@/components/status-indicator";
@@ -31,6 +32,7 @@ export default function Home() {
           <NavigationButtons />
           <SpeedSlider />
           <AIAssistant />
+          <PumpControl />
         </Card>
       </main>
 

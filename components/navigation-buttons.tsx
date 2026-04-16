@@ -15,27 +15,27 @@ const NavigationButtons = () => {
     const buttonSize = "";
     const { apiBase, addLog } = useConnection();
 
-    const handleMovingForward = async () => {
-        if (!apiBase) {
-            toast.error("No connection!");
-            addLog("Cannot move — robot not connected");
-            return
-        }
-        const data = await moveForward(apiBase, getSpeed());
+    // const handleMovingForward = async () => {
+    //     if (!apiBase) {
+    //         toast.error("No connection!");
+    //         addLog("Cannot move — robot not connected");
+    //         return
+    //     }
+    //     const data = await moveForward(apiBase, getSpeed());
 
-        addLog(data);
-    }
+    //     addLog(data);
+    // }
 
-    const handleMovingBackward = async () => {
-        if (!apiBase) {
-            toast.error("No connection!");
-            addLog("Cannot move — robot not connected");
-            return
-        }
-        const data = await moveBackward(apiBase, getSpeed());
+    // const handleMovingBackward = async () => {
+    //     if (!apiBase) {
+    //         toast.error("No connection!");
+    //         addLog("Cannot move — robot not connected");
+    //         return
+    //     }
+    //     const data = await moveBackward(apiBase, getSpeed());
 
-        addLog(data);
-    }
+    //     addLog(data);
+    // }
 
     const handleEmergencyStop = async () => {
         if (!apiBase) {
