@@ -6,6 +6,7 @@ import { getSpeed } from '@/lib/speed';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
 import React, { useState } from 'react';
+import { Label } from './ui/label';
 
 export enum Direction {
     Forward = 'forward',
@@ -72,16 +73,18 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
     };
 
     return (
-        <Button
-            className={`${className} active:scale-115 active:brightness-90 active:bg-green-500 transition-transform duration-150`}
-            onMouseDown={handleStart}
-            onMouseUp={handleStop}
-            onMouseLeave={isActive ? handleStop : () => { }}
-            onTouchStart={handleStart}
-            onTouchEnd={handleStop}
-        >
-            {icon}
-        </Button>
+        <Label>
+            <Button
+                className={`${className} active:scale-115 active:brightness-90 active:bg-green-500 transition-transform duration-150`}
+                onMouseDown={handleStart}
+                onMouseUp={handleStop}
+                onMouseLeave={isActive ? handleStop : () => { }}
+                onTouchStart={handleStart}
+                onTouchEnd={handleStop}
+            >
+                {icon}
+            </Button>
+        </Label>
     );
 };
 
