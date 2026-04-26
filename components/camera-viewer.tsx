@@ -37,7 +37,7 @@ function CameraViewer() {
                     <NoCameraFeed onRefresh={() => setRefreshTrigger(!refreshTrigger)} />
                     :
                     <img
-                        className="w-full p-4 rounded-xl rotate-180"
+                        className="w-full p-4 rounded-xl"
                         // src={handleCameraFeed}
                         // src='http://192.168.8.183:8081/video'
                         // src={PureCameraFeed(apiBase)}
