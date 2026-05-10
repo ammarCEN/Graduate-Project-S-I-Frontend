@@ -7,6 +7,7 @@ import { Button } from './ui/button';
 import { toast } from 'sonner';
 import React, { useState } from 'react';
 import { Label } from './ui/label';
+import { cn } from '@/lib/utils';
 
 export enum Direction {
     Forward = 'forward',
@@ -75,7 +76,12 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
     return (
         <Label>
             <Button
-                className={`${className} active:scale-115 active:brightness-90 active:bg-green-500 transition-transform duration-150`}
+                className={cn(
+                    className,
+                    "transition-all duration-150",
+                    "active:scale-115 active:brightness-90 active:bg-green-500",
+                )}
+                size={'lg'}
                 onMouseDown={handleStart}
                 onMouseUp={handleStop}
                 onMouseLeave={isActive ? handleStop : () => { }}

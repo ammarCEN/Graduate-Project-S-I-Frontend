@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { PumpOff, PumpOn } from "@/lib/api/api";
 import styles from '@/app/global.module.css';
+import HeaderComponent from "./header-component";
+import { IoWaterOutline } from "react-icons/io5";
 
 
 const PumpControl = () => {
@@ -36,11 +38,12 @@ const PumpControl = () => {
     return (
         <Card>
             <CardContent className="flex justify-between items-center">
-                <div className={styles.headerTitle}>
-                    <h1>Pump Control</h1>
-                    <p>Enable or disable pump control.</p>
-                </div>
-                <Switch disabled={!isConnected} checked={isEnable} onCheckedChange={handleTogglePump}></Switch>
+                <HeaderComponent
+                    title='Pump Control'
+                    description='Enable or disable pump control.'
+                    icon={IoWaterOutline}
+                />
+                <Switch disabled={!isConnected} checked={isEnable} onCheckedChange={handleTogglePump} />
             </CardContent>
         </Card>
     )

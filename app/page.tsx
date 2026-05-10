@@ -10,6 +10,7 @@ import SearchIP from "@/components/searchIP";
 import SpeedSlider from "@/components/speed-slider";
 import StatusIndicator from "@/components/status-indicator";
 import { Card } from "@/components/ui/card";
+import { SelectSeparator } from "@/components/ui/select";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 
 
@@ -31,6 +32,7 @@ export default function Home() {
         <Card className="md:w-1/2 w-full flex flex-col gap-4 p-4 lg:p-12">
           <NavigationButtons />
           <SpeedSlider />
+          <SelectSeparator />
           <AIAssistant />
           <PumpControl />
         </Card>

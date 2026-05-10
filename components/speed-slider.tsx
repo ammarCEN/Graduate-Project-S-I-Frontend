@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { setSpeed, getSpeed } from "@/lib/speed";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { Card, CardContent } from "./ui/card";
 import styles from '@/app/global.module.css';
+import { IoSpeedometerOutline } from "react-icons/io5";
+import HeaderComponent from "./header-component";
+
 
 
 export default function SpeedSlider() {
@@ -14,10 +16,11 @@ export default function SpeedSlider() {
     return (
         <Card>
             <CardContent>
-                <div className={styles.headerTitle}>
-                    <h1>Movement Speed: {Math.round(value[0] * 100)}%</h1>
-                    <p>Adjust the movement speed. Minimum is 20% and maximum is 100%.</p>
-                </div>
+                <HeaderComponent
+                    title={`Movement Speed: ${Math.round(value[0] * 100)}%`}
+                    description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
+                    icon={IoSpeedometerOutline}
+                />
                 <Slider
                     className="h-12"
                     value={value}

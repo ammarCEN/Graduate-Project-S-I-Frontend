@@ -3,6 +3,7 @@
 import useConnection from "@/app/providers/api-provider";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import { Textarea } from "./ui/textarea";
+import { ScrollArea } from "./ui/scroll-area";
 
 
 const LiveLogger = () => {
@@ -15,7 +16,7 @@ const LiveLogger = () => {
                 <span onClick={clearLogs} className="text-sm text-blue-500 underline cursor-pointer">clear log</span>
             </CardTitle>
 
-            <div className="border font-mono h-64 overflow-auto rounded-lg">
+            <ScrollArea className="border font-mono h-64 overflow-auto rounded-lg ">
                 {logs.map((line, i) => (
                     <div
                         key={i}
@@ -28,7 +29,7 @@ const LiveLogger = () => {
                         <span>{line}</span>
                     </div>
                 ))}
-            </div>
+            </ScrollArea>
 
         </Card>
     )

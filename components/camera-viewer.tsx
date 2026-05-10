@@ -31,7 +31,7 @@ function CameraViewer() {
     return (
         <>
             <StatusIndicator connected={isCameraFeed} />
-            <div className="w-full">
+            <div className="w-full border rounded-md">
                 {cameraConnectionStatus
                     ?
                     <NoCameraFeed onRefresh={() => setRefreshTrigger(!refreshTrigger)} />

@@ -28,7 +28,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     const [logs, setLogs] = useState<string[]>([]);
 
     // Controls
-    const [isVisionOn, setIsVisionOn] = useState<boolean>(true);
+    const [isVisionOn, setIsVisionOn] = useState<boolean>(false);
     const [isPumpOn, setIsPumpOn] = useState<boolean>(false);
 
 
