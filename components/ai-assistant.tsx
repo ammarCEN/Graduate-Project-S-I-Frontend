@@ -48,21 +48,21 @@ const AIAssistant = () => {
 
         <Card
             className={cn(
-                "relative overflow-hidden border transition-all duration-300 shadow-sm hover:shadow-md",
+                "relative overflow-hidden border transition-all duration-300 shadow-lg hover:shadow-xl", // Enhanced shadow for futuristic feel
 
-                // Light mode (eco clean)
-                "bg-gradient-to-br from-white to-emerald-50 border-emerald-100",
+                // Light mode (futuristic clean)
+                "bg-gradient-to-br from-gray-50 to-blue-100 border-blue-200", // Cooler tones for a tech vibe
 
-                // Dark mode (eco deep)
-                "dark:from-slate-900 dark:to-emerald-950 dark:border-emerald-900"
+                // Dark mode (futuristic deep)
+                "dark:from-gray-800 dark:to-blue-900 dark:border-blue-800"
             )}
         >
-            {/* Eco Glow Effect */}
+            {/* Futuristic Glow Effect */}
             <div
                 className={cn(
-                    "absolute -inset-1 blur-2xl opacity-20",
-                    "bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400",
-                    "dark:opacity-25"
+                    "absolute -inset-1 blur-3xl opacity-30", // Increased blur and opacity for a glowing effect
+                    "bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500", // Cooler gradient for a tech feel
+                    "dark:opacity-40"
                 )}
             />
 
@@ -77,11 +77,11 @@ const AIAssistant = () => {
                     disabled={!isConnected}
                     checked={isVisionOn}
                     onCheckedChange={handleToggleVision}
-                // className={cn(
-                //     "data-[state=checked]:bg-gradient-to-r",
-                //     "data-[state=checked]:from-emerald-500",
-                //     "data-[state=checked]:to-green-600"
-                // )}
+                    className={cn(
+                        "data-[state=checked]:bg-gradient-to-r", // Gradient for checked state
+                        "data-[state=checked]:from-blue-500", // Start of gradient
+                        "data-[state=checked]:to-purple-600" // End of gradient
+                    )}
                 />
             </CardContent>
         </Card>

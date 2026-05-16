@@ -7,7 +7,7 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 import useConnection from '@/app/providers/api-provider';
 import { Card, CardContent, CardFooter } from './ui/card';
 import { toast } from 'sonner';
-import MovementButton, { Direction } from './single-navigarion-button';
+import MovementButton, { Direction } from './single-navigation-button';
 import { PiTireDuotone } from "react-icons/pi";
 import HeaderComponent from './header-component';
 import { Label } from './ui/label';
@@ -34,7 +34,7 @@ const NavigationButtons = () => {
                 <div className='flex flex-col items-center justify-center gap-2'>
                     <HeaderComponent
                         title='Movement Buttons'
-                        description='These bottom buttons are interactive navigation buttons to start moving until unclicking and then automatically stopping the robot.'
+                        description='These bottom buttons are interactive navigation buttons to start moving until unclick and then automatically stopping the robot.'
                         icon={PiTireDuotone}
                     />
                     <MovementButton action={Direction.Forward} icon={<FaAngleDoubleUp />} />
