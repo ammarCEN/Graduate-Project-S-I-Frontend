@@ -77,16 +77,27 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
         <Label>
             <Button
                 className={cn(
+                    // allow passing extra classes from parent
                     className,
-                    "transition-all duration-150",
-                    "active:scale-115 active:brightness-90 active:bg-green-500",
+                    // mobile-friendly circular control look
+                    'w-20 h-20 p-0 rounded-full flex items-center justify-center',
+                    'text-2xl',
+                    'bg-gradient-to-br from-slate-800 to-slate-700 text-white',
+                    'shadow-2xl ring-1 ring-black/20',
+                    'transition-transform duration-150 ease-out',
+                    // tactile feedback
+                    'active:scale-95 active:brightness-110',
+                    // subtle hover for desktop
+                    'hover:scale-105 hover:brightness-105',
                 )}
                 size={'lg'}
                 onMouseDown={handleStart}
                 onMouseUp={handleStop}
-                onMouseLeave={isActive ? handleStop : () => { }}
+                onMouseLeave={() => { if (isActive) handleStop(); }}
                 onTouchStart={handleStart}
                 onTouchEnd={handleStop}
+                aria-pressed={isActive}
+                aria-label={`move-${action}`}
             >
                 {icon}
             </Button>

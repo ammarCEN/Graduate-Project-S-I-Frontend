@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 import AIAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
@@ -12,39 +12,59 @@ import StatusIndicator from "@/components/status-indicator";
 import { Card } from "@/components/ui/card";
 import { SelectSeparator } from "@/components/ui/select";
 import { Separator } from "@radix-ui/react-dropdown-menu";
-
+import useConnection from "./providers/api-provider";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
+  const { isVisionOn } = useConnection();
   return (
     <div className="flex flex-col p-6 gap-4 md:p-12 md:gap-6">
       <Header />
       <SearchIP />
 
-
-
-      <main className="flex flex-col md:flex-row gap-8">
+      <main
+        className={cn(
+          "flex flex-col md:flex-row gap-8 transition-all duration-300",
+          isVisionOn ? "gap-4" : "gap-8"
+        )}
+      >
         {/* Left side for camera */}
-        <Card className="md:w-1/2 w-full p-6">
+        <Card
+          className={cn(
+            "p-6 transition-all duration-300",
+            isVisionOn ? "w-full" : "md:w-1/2 w-full"
+          )}
+        >
           <CameraViewer />
+          <div
+            className={cn(
+              "mt-4 transition-opacity duration-300",
+              isVisionOn ? "opacity-100" : "hidden"
+            )}
+          >
+            <AIAssistant />
+          </div>
         </Card>
 
         {/* Right side for buttons */}
-        <Card className="md:w-1/2 w-full flex flex-col gap-4 p-4 lg:p-12">
-          <NavigationButtons />
-          <SpeedSlider />
-          <SelectSeparator />
-          <AIAssistant />
-          <PumpControl />
-        </Card>
+        {!isVisionOn && (
+          <div className="transition-all duration-300 md:w-1/2 w-full">
+            <Card className="flex flex-col gap-4 p-4 lg:p-12">
+              <NavigationButtons />
+              <SpeedSlider />
+              <SelectSeparator />
+              <AIAssistant />
+              <PumpControl />
+            </Card>
+          </div>
+        )}
       </main>
 
-
-
-      <footer>
+      <footer
+        className={cn("transition-all duration-300", isVisionOn ? "mt-4" : "mt-0")}
+      >
         <LiveLogger />
       </footer>
     </div>
-
-
   );
 }

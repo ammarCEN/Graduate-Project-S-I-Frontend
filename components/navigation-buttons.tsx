@@ -37,12 +37,20 @@ const NavigationButtons = () => {
                         description='These bottom buttons are interactive navigation buttons to start moving until unclick and then automatically stopping the robot.'
                         icon={PiTireDuotone}
                     />
-                    <MovementButton action={Direction.Forward} icon={<FaAngleDoubleUp />} />
-                    <span className='flex items-center justify-center gap-2'>
-                        <MovementButton action={Direction.Left} icon={<FaAngleDoubleUp className='rotate-270' />} />
+                    <div className='flex flex-col items-center justify-center gap-2'>
+                        {/* Up */}
+                        <MovementButton action={Direction.Forward} icon={<FaAngleDoubleUp />} />
+
+                        {/* Middle row: Left, (empty center), Right */}
+                        <div className='flex items-center justify-center gap-2'>
+                            <MovementButton action={Direction.Left} icon={<FaAngleDoubleUp className='rotate-270' />} />
+                            <div className='w-12' />
+                            <MovementButton action={Direction.Right} icon={<FaAngleDoubleUp className='rotate-90' />} />
+                        </div>
+
+                        {/* Down */}
                         <MovementButton action={Direction.Backward} icon={<FaAngleDoubleUp className='rotate-180' />} />
-                        <MovementButton action={Direction.Right} icon={<FaAngleDoubleUp className='rotate-90' />} />
-                    </span>
+                    </div>
 
                 </div>
             </CardContent>
