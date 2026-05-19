@@ -6,7 +6,6 @@ import { Switch } from "./ui/switch";
 import { toast } from "sonner";
 import { useState } from "react";
 import { PumpOff, PumpOn } from "@/lib/api/api";
-import styles from '@/app/global.module.css';
 import HeaderComponent from "./header-component";
 import { IoWaterOutline } from "react-icons/io5";
 
@@ -43,7 +42,10 @@ const PumpControl = () => {
                     description='Enable or disable pump control.'
                     icon={IoWaterOutline}
                 />
-                <Switch disabled={!isConnected} checked={isEnable} onCheckedChange={handleTogglePump} />
+                <Switch
+                    disabled={!isConnected}
+                    checked={isEnable}
+                    onCheckedChange={handleTogglePump} />
             </CardContent>
         </Card>
     )

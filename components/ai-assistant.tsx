@@ -48,6 +48,8 @@ const AIAssistant = () => {
 
         <Card
             className={cn(
+                "cursor-pointer",
+
                 "relative overflow-hidden border transition-all duration-300 shadow-lg hover:shadow-xl", // Enhanced shadow for futuristic feel
 
                 // Light mode (futuristic clean)
@@ -56,6 +58,7 @@ const AIAssistant = () => {
                 // Dark mode (futuristic deep)
                 "dark:from-gray-800 dark:to-blue-900 dark:border-blue-800"
             )}
+            onClick={handleToggleVision}
         >
             {/* Futuristic Glow Effect */}
             <div
