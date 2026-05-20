@@ -42,7 +42,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     const [isPumpOn, setIsPumpOn] = useState<boolean>(false);
 
     // -- Sliders
-    const [motorSpeedSlider, setMotorSpeedSlider] = useState<number[]>([0.2]);
+    const [motorSpeedSlider, setMotorSpeedSlider] = useState<number[]>([0.6]);
     const [cameraZoomSlider, setCameraZoomSlider] = useState<number[]>([1]);
 
     // Logs
