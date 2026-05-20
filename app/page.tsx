@@ -14,6 +14,7 @@ import { SelectSeparator } from "@/components/ui/select";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import useConnection from "./providers/api-provider";
 import { cn } from "@/lib/utils";
+import CameraNavigationButtons from "@/components/camera-navigation-buttons";
 
 export default function Home() {
   const { isVisionOn } = useConnection();
@@ -32,7 +33,7 @@ export default function Home() {
         <Card
           className={cn(
             "p-6 transition-all duration-300",
-            isVisionOn ? "w-full" : "md:w-1/2 w-full"
+            isVisionOn ? "w-[50%]" : "md:w-1/2 w-full"
           )}
         >
           <CameraViewer />
@@ -51,6 +52,7 @@ export default function Home() {
           <div className="transition-all duration-300 md:w-1/2 w-full">
             <Card className="flex flex-col gap-4 p-4 lg:p-12">
               <NavigationButtons />
+              <CameraNavigationButtons />
               <SpeedSlider />
               <SelectSeparator />
               <AIAssistant />

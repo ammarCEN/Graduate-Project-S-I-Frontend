@@ -18,38 +18,50 @@ async function safeFetch<T>(fetchPromise: Promise<Response>): Promise<T & { erro
 }
 
 
-
-
-// --- AI Control ---
-// export const startAI = (BASE: string) =>
-//     safeFetch(fetch(`${BASE}/ai/detect`, { method: "GET", cache: 'no-store' }));
-
-// export const startAI = (BASE: string) =>
-//     safeFetch(fetch(`${BASE}/vision/toggle/on`, { method: "POST", cache: 'no-store' }));
-
-// export const stopAI = (BASE: string) =>
-//     safeFetch(fetch(`${BASE}/vision/toggle/off`, { method: "POST", cache: 'no-store' }));
-
-
-
-
-
-
 // --- Motor Control ---
-export const moveForward = (BASE: string, speed = 0.6) =>
+export const motorMoveForward = (BASE: string, speed = 0.6) =>
     safeFetch(fetch(`${BASE}/motor/move?direction=forward&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
-export const moveBackward = (BASE: string, speed = 0.6) =>
+export const motorMoveBackward = (BASE: string, speed = 0.6) =>
     safeFetch(fetch(`${BASE}/motor/move?direction=backward&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
-export const moveRight = (BASE: string, speed = 0.6) =>
+export const motorMoveRight = (BASE: string, speed = 0.6) =>
     safeFetch(fetch(`${BASE}/motor/move?direction=right&speed=${1}`, { method: "POST", cache: 'no-store' }));
 
-export const moveLeft = (BASE: string, speed = 0.6) =>
+export const motorMoveLeft = (BASE: string, speed = 0.6) =>
     safeFetch(fetch(`${BASE}/motor/move?direction=left&speed=${1}`, { method: "POST", cache: 'no-store' }));
 
-export const stopRobot = (BASE: string) =>
+export const motorStop = (BASE: string) =>
     safeFetch(fetch(`${BASE}/motor/stop`, { method: "POST", cache: 'no-store' }));
+
+
+
+
+// --- Camera Control ---
+export const cameraMoveUp = (BASE: string, speed = 50) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/move?direction=up&speed=${speed}`, { method: "POST", cache: 'no-store' }));
+
+export const cameraMoveDown = (BASE: string, speed = 50) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/move?direction=down&speed=${speed}`, { method: "POST", cache: 'no-store' }));
+
+export const cameraMoveRight = (BASE: string, speed = 50) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/move?direction=right&speed=${speed}`, { method: "POST", cache: 'no-store' }));
+
+export const cameraMoveLeft = (BASE: string, speed = 50) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/move?direction=left&speed=${speed}`, { method: "POST", cache: 'no-store' }));
+
+export const cameraSetCenter = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/center`, { method: "POST", cache: 'no-store' }));
+
+export const cameraZoom = (BASE: string, level = 1) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/zoom?level=${level}`, { method: "POST", cache: 'no-store' }));
+
+export const cameraStop = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/camera/ptz/stop`, { method: "POST", cache: 'no-store' }));
+
+
+
+
 
 
 
@@ -70,10 +82,8 @@ export const PumpStatus = (BASE: string) =>
 
 
 // --- Video Feed ---
-// export const PureCameraFeed = (BASE: string) => `${BASE}/camera/feed`;
-// export const AICameraFeed = (BASE: string) => `${BASE}/ai/detect`;
-
 export const ManualCameraFeed = (BASE: string) => `${BASE}/camera/feed?mode=manual`;
+
 export const AiCameraFeed = (BASE: string) => `${BASE}/camera/feed?mode=automatic`;
 
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { stopRobot } from '@/lib/api/api';
+import { motorStop } from '@/lib/api/api';
 import { Button } from './ui/button'
 import { MoveUp, MoveDown, MoveLeft, MoveRight, Siren } from "lucide-react";
 import { FaAngleDoubleUp } from "react-icons/fa";
@@ -23,7 +23,7 @@ const NavigationButtons = () => {
             addLog("Cannot execute — robot not connected");
             return
         }
-        const data = await stopRobot(apiBase);
+        const data = await motorStop(apiBase);
 
         addLog(data);
     }

@@ -1,8 +1,7 @@
 'use client';
 
-import { moveForward, moveBackward, stopRobot, moveRight, moveLeft } from '@/lib/api/api';
+import { motorMoveForward, motorMoveBackward, motorStop, motorMoveRight, motorMoveLeft, cameraMoveUp, cameraMoveDown, cameraMoveRight, cameraMoveLeft } from '@/lib/api/api';
 import useConnection from '@/app/providers/api-provider';
-import { getSpeed } from '@/lib/speed';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
 import React, { useState } from 'react';
@@ -20,10 +19,11 @@ interface RobotButtonProps {
     action: Direction;
     icon: React.ReactNode;
     className?: string;
+    isCameraMovement?: boolean;
 }
 
-const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className }) => {
-    const { apiBase, addLog } = useConnection();
+const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, isCameraMovement = false }) => {
+    const { apiBase, addLog, motorSpeedSlider } = useConnection();
     const [isActive, setIsActive] = useState(false);
 
     const handleStart = async () => {
@@ -39,22 +39,52 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
             let data;
             switch (action) {
                 case Direction.Forward:
-                    data = await moveForward(apiBase, getSpeed());
+                    data = isCameraMovement ?
+                        await motorMoveForward(apiBase, motorSpeedSlider[0])
+                        : await cameraMoveUp(apiBase)
+                        ;
                     break;
                 case Direction.Backward:
-                    data = await moveBackward(apiBase, getSpeed());
+                    data = isCameraMovement ?
+                        await motorMoveBackward(apiBase, motorSpeedSlider[0])
+                        : await cameraMoveDown(apiBase)
+                        ;
                     break;
                 case Direction.Right:
-                    data = await moveRight(apiBase, getSpeed());
+                    data = isCameraMovement ?
+                        await motorMoveRight(apiBase, motorSpeedSlider[0])
+                        : await cameraMoveRight(apiBase)
+                        ;
                     break;
                 case Direction.Left:
-                    data = await moveLeft(apiBase, getSpeed());
+                    data = isCameraMovement ?
+                        await motorMoveLeft(apiBase, motorSpeedSlider[0])
+                        : await cameraMoveLeft(apiBase)
+                        ;
                     break;
                 default:
                     data = { "Direction": `${action} not implemented yet` }
                     setIsActive(false);
                 // return;
             }
+            // switch (action) {
+            //     case Direction.Forward:
+            //         data = await moveForward(apiBase, getSpeed());
+            //         break;
+            //     case Direction.Backward:
+            //         data = await moveBackward(apiBase, getSpeed());
+            //         break;
+            //     case Direction.Right:
+            //         data = await moveRight(apiBase, getSpeed());
+            //         break;
+            //     case Direction.Left:
+            //         data = await moveLeft(apiBase, getSpeed());
+            //         break;
+            //     default:
+            //         data = { "Direction": `${action} not implemented yet` }
+            //         setIsActive(false);
+            //     // return;
+            // }
             addLog(data);
         } catch (err: any) {
             addLog(`Error moving ${action}: ${err.message}`);
@@ -66,7 +96,7 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className })
         if (!apiBase) return;
         setIsActive(false);
         try {
-            const data = await stopRobot(apiBase);
+            const data = await motorStop(apiBase);
             addLog(data);
         } catch (err: any) {
             addLog(`Error stopping: ${err.message}`);

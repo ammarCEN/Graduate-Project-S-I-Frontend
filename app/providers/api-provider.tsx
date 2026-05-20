@@ -2,18 +2,27 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type ConnectionContextType = {
+    // System
     isConnected: boolean;
     setIsConnected: (val: boolean) => void;
 
     apiBase: string | null;
     setApiBase: (val: string | null) => void;
 
+    // Controls
     isVisionOn: boolean;
     setIsVisionOn: (val: boolean) => void;
 
     isPumpOn: boolean;
     setIsPumpOn: (val: boolean) => void;
 
+    // Sliders
+    motorSpeedSlider: number[];
+    setMotorSpeedSlider: (val: number[]) => void;
+    cameraZoomSlider: number[];
+    setCameraZoomSlider: (val: number[]) => void;
+
+    // Logs
     logs: string[];
     addLog: (entry: any) => void;
     clearLogs: () => void;
@@ -22,16 +31,21 @@ type ConnectionContextType = {
 const ConnectionContext = createContext<ConnectionContextType | undefined>(undefined);
 
 export function ConnectionProvider({ children }: { children: ReactNode }) {
-
+    // ----------- States ----------- //
+    // -- System
     const [apiBase, setApiBase] = useState<string | null>(process.env.NEXT_PUBLIC_API_BASE || null);
     const [isConnected, setIsConnected] = useState(false);
     const [logs, setLogs] = useState<string[]>([]);
 
-    // Controls
+    // -- Controls
     const [isVisionOn, setIsVisionOn] = useState<boolean>(false);
     const [isPumpOn, setIsPumpOn] = useState<boolean>(false);
 
+    // -- Sliders
+    const [motorSpeedSlider, setMotorSpeedSlider] = useState<number[]>([0.2]);
+    const [cameraZoomSlider, setCameraZoomSlider] = useState<number[]>([1]);
 
+    // Logs
     const addLog = (entry: any) => {
         const formatted =
             typeof entry === "string"
@@ -69,12 +83,22 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
         <ConnectionContext.Provider value={{
             apiBase,
             setApiBase,
+
             isConnected,
             setIsConnected,
+
             isPumpOn,
             setIsPumpOn,
+
             isVisionOn,
             setIsVisionOn,
+
+            motorSpeedSlider,
+            setMotorSpeedSlider,
+
+            cameraZoomSlider,
+            setCameraZoomSlider,
+
             logs,
             addLog,
             clearLogs

@@ -1,35 +1,32 @@
 "use client";
 
-import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
-import { setSpeed, getSpeed } from "@/lib/speed";
 import { Card, CardContent } from "./ui/card";
-import styles from '@/app/global.module.css';
 import { IoSpeedometerOutline } from "react-icons/io5";
 import HeaderComponent from "./header-component";
+import useConnection from "@/app/providers/api-provider";
 
 
 
 export default function SpeedSlider() {
-    const [value, setValue] = useState<number[]>([getSpeed()]);
+    const { motorSpeedSlider, setMotorSpeedSlider } = useConnection();
 
     return (
         <Card>
             <CardContent>
                 <HeaderComponent
-                    title={`Movement Speed: ${Math.round(value[0] * 100)}%`}
+                    title={`Movement Speed: ${Math.round(motorSpeedSlider[0] * 100)}%`}
                     description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
                     icon={IoSpeedometerOutline}
                 />
                 <Slider
                     className="h-12"
-                    value={value}
+                    value={motorSpeedSlider}
                     min={0}
                     max={1}
                     step={0.05}
                     onValueChange={(val: number[]) => {
-                        setValue(val);
-                        setSpeed(val[0]);
+                        setMotorSpeedSlider(val);
                     }}
                 />
             </CardContent>
