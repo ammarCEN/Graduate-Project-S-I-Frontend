@@ -4,9 +4,9 @@ import useConnection from "@/app/providers/api-provider";
 import { Card, CardContent } from "./ui/card";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
-import { PumpOff, PumpOn } from "@/lib/api/api";
 import HeaderComponent from "./header-component";
 import { IoWaterOutline } from "react-icons/io5";
+import { Robot } from "@/lib/api/robot-api-control";
 
 
 const PumpControl = () => {
@@ -21,11 +21,11 @@ const PumpControl = () => {
 
         let data;
         if (isPumpOn) {
-            data = await PumpOff(apiBase);
+            data = await Robot.Pump.Deactivate(apiBase);
             setIsPumpOn(false);
         }
         else {
-            data = await PumpOn(apiBase);
+            data = await Robot.Pump.Active(apiBase);
             setIsPumpOn(true);
         }
 

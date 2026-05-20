@@ -8,7 +8,7 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 import MovementButton, { Direction } from "./single-navigation-button";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { cameraSetCenter, cameraZoom } from "@/lib/api/api";
+import { Robot } from "@/lib/api/robot-api-control";
 
 
 const CameraNavigationButtons = () => {
@@ -22,9 +22,9 @@ const CameraNavigationButtons = () => {
         }
 
         if (zoom == '+')
-            await cameraZoom(apiBase, 500);
+            await Robot.Camera.Zoom(apiBase, 500);
         else
-            await cameraZoom(apiBase, 1);
+            await Robot.Camera.Zoom(apiBase, 1);
 
 
     }
@@ -35,7 +35,7 @@ const CameraNavigationButtons = () => {
             return
         }
 
-        await cameraSetCenter(apiBase);
+        await Robot.Camera.Center(apiBase);
 
 
     }

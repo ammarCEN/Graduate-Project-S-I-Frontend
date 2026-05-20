@@ -1,12 +1,12 @@
 'use client';
 
-import { motorMoveForward, motorMoveBackward, motorStop, motorMoveRight, motorMoveLeft, cameraMoveUp, cameraMoveDown, cameraMoveRight, cameraMoveLeft } from '@/lib/api/api';
 import useConnection from '@/app/providers/api-provider';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
 import React, { useState } from 'react';
 import { Label } from './ui/label';
 import { cn } from '@/lib/utils';
+import { Robot } from '@/lib/api/robot-api-control';
 
 export enum Direction {
     Forward = 'forward',
@@ -23,7 +23,7 @@ interface RobotButtonProps {
 }
 
 const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, isCameraMovement = false }) => {
-    const { apiBase, addLog, motorSpeedSlider } = useConnection();
+    const { apiBase, addLog, motorSpeedSlider, cameraZoomSlider } = useConnection();
     const [isActive, setIsActive] = useState(false);
 
     const handleStart = async () => {
@@ -39,52 +39,29 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, i
             let data;
             switch (action) {
                 case Direction.Forward:
-                    data = isCameraMovement ?
-                        await motorMoveForward(apiBase, motorSpeedSlider[0])
-                        : await cameraMoveUp(apiBase)
-                        ;
+                    data = isCameraMovement
+                        ? await Robot.Motor.Move.Forward(apiBase, motorSpeedSlider[0])
+                        : await Robot.Camera.Move.Up(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Backward:
-                    data = isCameraMovement ?
-                        await motorMoveBackward(apiBase, motorSpeedSlider[0])
-                        : await cameraMoveDown(apiBase)
-                        ;
+                    data = isCameraMovement
+                        ? await Robot.Motor.Move.Backward(apiBase, motorSpeedSlider[0])
+                        : await Robot.Camera.Move.Down(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Right:
-                    data = isCameraMovement ?
-                        await motorMoveRight(apiBase, motorSpeedSlider[0])
-                        : await cameraMoveRight(apiBase)
-                        ;
+                    data = isCameraMovement
+                        ? await Robot.Motor.Move.Right(apiBase, motorSpeedSlider[0])
+                        : await Robot.Camera.Move.Right(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Left:
-                    data = isCameraMovement ?
-                        await motorMoveLeft(apiBase, motorSpeedSlider[0])
-                        : await cameraMoveLeft(apiBase)
-                        ;
+                    data = isCameraMovement
+                        ? await Robot.Motor.Move.Left(apiBase, motorSpeedSlider[0])
+                        : await Robot.Camera.Move.Left(apiBase, cameraZoomSlider[0]);
                     break;
                 default:
                     data = { "Direction": `${action} not implemented yet` }
                     setIsActive(false);
-                // return;
             }
-            // switch (action) {
-            //     case Direction.Forward:
-            //         data = await moveForward(apiBase, getSpeed());
-            //         break;
-            //     case Direction.Backward:
-            //         data = await moveBackward(apiBase, getSpeed());
-            //         break;
-            //     case Direction.Right:
-            //         data = await moveRight(apiBase, getSpeed());
-            //         break;
-            //     case Direction.Left:
-            //         data = await moveLeft(apiBase, getSpeed());
-            //         break;
-            //     default:
-            //         data = { "Direction": `${action} not implemented yet` }
-            //         setIsActive(false);
-            //     // return;
-            // }
             addLog(data);
         } catch (err: any) {
             addLog(`Error moving ${action}: ${err.message}`);
@@ -96,7 +73,13 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, i
         if (!apiBase) return;
         setIsActive(false);
         try {
-            const data = await motorStop(apiBase);
+            let data;
+
+            if (isCameraMovement)
+                data = await Robot.Camera.Stop(apiBase);
+            else
+                data = await Robot.Motor.Stop(apiBase);
+
             addLog(data);
         } catch (err: any) {
             addLog(`Error stopping: ${err.message}`);

@@ -1,11 +1,11 @@
 'use client';
+
 import useConnection from "@/app/providers/api-provider";
-import { ManualCameraFeed, AiCameraFeed } from "@/lib/api/api";
-// import { AICameraFeed } from "@/lib/api/api";
 import NoCameraFeed from "./no-camera-feed";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import StatusIndicator from "./status-indicator";
+import { Robot } from "@/lib/api/robot-api-control";
 
 
 function CameraViewer() {
@@ -24,7 +24,10 @@ function CameraViewer() {
         }
 
         setIsCameraFeed(true);
-        addLog(`Trying to fetch camera feed → ${isVisionOn ? AiCameraFeed(apiBase) : ManualCameraFeed(apiBase)}`);
+        addLog(`Trying to fetch camera feed → ${isVisionOn
+            ? Robot.VideoFeed.Auto(apiBase)
+            : Robot.VideoFeed.Manual(apiBase)
+            }`);
     }, [apiBase, isConnected, refreshTrigger]);
 
 
@@ -41,7 +44,11 @@ function CameraViewer() {
                         // src={handleCameraFeed}
                         // src='http://192.168.8.183:8081/video'
                         // src={PureCameraFeed(apiBase)}
-                        src={isVisionOn ? AiCameraFeed(apiBase) : ManualCameraFeed(apiBase)}
+                        src={
+                            isVisionOn
+                                ? Robot.VideoFeed.Auto(apiBase)
+                                : Robot.VideoFeed.Manual(apiBase)
+                        }
                         alt="Camera feed"
                         onError={() => {
                             setIsCameraFeed(false);

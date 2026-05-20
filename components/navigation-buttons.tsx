@@ -1,8 +1,7 @@
 'use client';
 
-import { motorStop } from '@/lib/api/api';
 import { Button } from './ui/button'
-import { MoveUp, MoveDown, MoveLeft, MoveRight, Siren } from "lucide-react";
+import { Siren } from "lucide-react";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import useConnection from '@/app/providers/api-provider';
 import { Card, CardContent, CardFooter } from './ui/card';
@@ -10,7 +9,7 @@ import { toast } from 'sonner';
 import MovementButton, { Direction } from './single-navigation-button';
 import { PiTireDuotone } from "react-icons/pi";
 import HeaderComponent from './header-component';
-import { Label } from './ui/label';
+import { Robot } from '@/lib/api/robot-api-control';
 
 
 
@@ -23,7 +22,7 @@ const NavigationButtons = () => {
             addLog("Cannot execute — robot not connected");
             return
         }
-        const data = await motorStop(apiBase);
+        const data = await Robot.Motor.Stop(apiBase);
 
         addLog(data);
     }
