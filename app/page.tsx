@@ -3,10 +3,9 @@
 import AIAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
-import NavigationButtons from "@/components/navigation-buttons";
+import MotorNavigationButtons from "@/components/motor-navigation-buttons";
 import PumpControl from "@/components/pump-control";
 import SearchIP from "@/components/searchIP";
-import SpeedSlider from "@/components/speed-slider";
 import { Card } from "@/components/ui/card";
 import { SelectSeparator } from "@/components/ui/select";
 import useConnection from "./providers/api-provider";
@@ -48,7 +47,7 @@ export default function Home() {
         {!isVisionOn && (
           <div className="transition-all duration-300 md:w-1/2 w-full">
             <Card className="flex flex-col gap-4 p-4 lg:p-12">
-              <NavigationButtons />
+              <MotorNavigationButtons />
               <CameraNavigationButtons />
               <SelectSeparator />
               <AIAssistant />

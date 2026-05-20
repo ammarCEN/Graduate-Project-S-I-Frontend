@@ -1,12 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardFooter } from './ui/card';
+import { Card, CardContent } from './ui/card';
 import MovementButton, { Direction } from './single-navigation-button';
 import { PiTireDuotone } from "react-icons/pi";
 import HeaderComponent from './header-component';
 import SpeedSlider from './speed-slider';
 
-const NavigationButtons = () => {
+const MotorNavigationButtons = () => {
     return (
         <Card>
             <CardContent>
@@ -41,4 +41,4 @@ const NavigationButtons = () => {
     )
 }
 
-export default NavigationButtons
+export default MotorNavigationButtons
