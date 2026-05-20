@@ -1,37 +1,37 @@
 'use client';
 
 import useConnection from "@/app/providers/api-provider";
-import { Card, CardContent, CardTitle } from "./ui/card";
-import { Textarea } from "./ui/textarea";
 import { ScrollArea } from "./ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 
 const LiveLogger = () => {
-    const { logs, clearLogs } = useConnection();
+    const { logs } = useConnection();
+
+    if (logs.length === 0)
+        return <p>No logs!</p>
 
     return (
-        <Card className="px-6">
-            <CardTitle className="font-mono">
-                Live logger: {" "}
-                <span onClick={clearLogs} className="text-sm text-blue-500 underline cursor-pointer">clear log</span>
-            </CardTitle>
+        <ScrollArea className="w-full max-h-[50vh] border rounded-lg font-mono">
+            {logs.map((line, idx) => (
+                <p
+                    key={idx}
+                    className={cn(
+                        "flex w-full",
+                        "even:bg-gray-100 odd:bg-white",
+                        "dark:even:bg-gray-800 dark:odd:bg-transparent"
+                    )}
+                >
+                    <span className="w-8 shrink-0 text-right pr-2 text-gray-500">
+                        {idx + 1}.
+                    </span>
 
-            <ScrollArea className="border font-mono h-64 overflow-auto rounded-lg ">
-                {logs.map((line, i) => (
-                    <div
-                        key={i}
-                        className="
-                            flex
-                            even:bg-gray-100 odd:bg-white
-                            dark:even:bg-gray-800 dark:odd:bg-transparent"
-                    >
-                        <span className="w-8 text-right pr-2 text-gray-500">{i + 1}.</span>
-                        <span>{line}</span>
-                    </div>
-                ))}
-            </ScrollArea>
-
-        </Card>
+                    <span className="min-w-0 break-all whitespace-pre-wrap">
+                        {line}
+                    </span>
+                </p>
+            ))}
+        </ScrollArea>
     )
 }
 

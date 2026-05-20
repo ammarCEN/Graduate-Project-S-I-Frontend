@@ -3,15 +3,12 @@
 import AIAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
-import LiveLogger from "@/components/live-log";
 import NavigationButtons from "@/components/navigation-buttons";
 import PumpControl from "@/components/pump-control";
 import SearchIP from "@/components/searchIP";
 import SpeedSlider from "@/components/speed-slider";
-import StatusIndicator from "@/components/status-indicator";
 import { Card } from "@/components/ui/card";
 import { SelectSeparator } from "@/components/ui/select";
-import { Separator } from "@radix-ui/react-dropdown-menu";
 import useConnection from "./providers/api-provider";
 import { cn } from "@/lib/utils";
 import CameraNavigationButtons from "@/components/camera-navigation-buttons";
@@ -61,12 +58,6 @@ export default function Home() {
           </div>
         )}
       </main>
-
-      <footer
-        className={cn("transition-all duration-300", isVisionOn ? "mt-4" : "mt-0")}
-      >
-        <LiveLogger />
-      </footer>
     </div>
   );
 }
