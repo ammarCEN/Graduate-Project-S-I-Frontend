@@ -4,15 +4,14 @@ import useConnection from "@/app/providers/api-provider";
 import { Card, CardContent } from "./ui/card";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
-import { useState } from "react";
 import { PumpOff, PumpOn } from "@/lib/api/api";
 import HeaderComponent from "./header-component";
 import { IoWaterOutline } from "react-icons/io5";
 
 
 const PumpControl = () => {
-    const [isEnable, setIsEnable] = useState(false);
-    const { apiBase, isConnected, addLog } = useConnection();
+    // const [isEnable, setIsEnable] = useState(false);
+    const { isPumpOn, setIsPumpOn, apiBase, isConnected, addLog } = useConnection();
 
     const handleTogglePump = async () => {
         if (!apiBase) {
@@ -23,13 +22,13 @@ const PumpControl = () => {
         }
 
         let data;
-        if (isEnable) {
+        if (isPumpOn) {
             data = await PumpOff(apiBase);
-            setIsEnable(false);
+            setIsPumpOn(false);
         }
         else {
             data = await PumpOn(apiBase);
-            setIsEnable(true);
+            setIsPumpOn(true);
         }
 
         addLog(data);
@@ -44,7 +43,7 @@ const PumpControl = () => {
                 />
                 <Switch
                     disabled={!isConnected}
-                    checked={isEnable}
+                    checked={isPumpOn}
                     onCheckedChange={handleTogglePump} />
             </CardContent>
         </Card>
