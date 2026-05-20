@@ -10,14 +10,12 @@ import { IoWaterOutline } from "react-icons/io5";
 
 
 const PumpControl = () => {
-    // const [isEnable, setIsEnable] = useState(false);
     const { isPumpOn, setIsPumpOn, apiBase, isConnected, addLog } = useConnection();
 
     const handleTogglePump = async () => {
         if (!apiBase) {
             toast.error("No connection!");
             addLog("Cannot toggle pump — robot not connected");
-            // setIsEnable(false);
             return;
         }
 
