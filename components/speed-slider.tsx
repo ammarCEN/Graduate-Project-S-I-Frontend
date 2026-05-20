@@ -12,24 +12,23 @@ export default function SpeedSlider() {
     const { motorSpeedSlider, setMotorSpeedSlider } = useConnection();
 
     return (
-        <Card>
-            <CardContent>
-                <HeaderComponent
-                    title={`Movement Speed: ${Math.round(motorSpeedSlider[0] * 100)}%`}
-                    description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
-                    icon={IoSpeedometerOutline}
-                />
-                <Slider
-                    className="h-12"
-                    value={motorSpeedSlider}
-                    min={0}
-                    max={1}
-                    step={0.05}
-                    onValueChange={(val: number[]) => {
-                        setMotorSpeedSlider(val);
-                    }}
-                />
-            </CardContent>
-        </Card>
+        <div className="w-full">
+            <HeaderComponent
+                title={`Movement Speed: ${Math.round(motorSpeedSlider[0] * 100)}%`}
+                // description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
+                description=''
+                icon={IoSpeedometerOutline}
+            />
+            <Slider
+                className="h-12"
+                value={motorSpeedSlider}
+                min={0}
+                max={1}
+                step={0.05}
+                onValueChange={(val: number[]) => {
+                    setMotorSpeedSlider(val);
+                }}
+            />
+        </div>
     );
 }

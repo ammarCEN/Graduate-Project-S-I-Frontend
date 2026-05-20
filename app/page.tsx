@@ -50,7 +50,6 @@ export default function Home() {
             <Card className="flex flex-col gap-4 p-4 lg:p-12">
               <NavigationButtons />
               <CameraNavigationButtons />
-              <SpeedSlider />
               <SelectSeparator />
               <AIAssistant />
               <PumpControl />

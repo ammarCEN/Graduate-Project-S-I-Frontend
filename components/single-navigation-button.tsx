@@ -7,25 +7,31 @@ import React, { useState } from 'react';
 import { Label } from './ui/label';
 import { cn } from '@/lib/utils';
 import { Robot } from '@/lib/api/robot-api-control';
+import { Icons } from '@/lib/icons';
 
 export enum Direction {
     Forward = 'forward',
     Backward = 'backward',
     Left = 'left',
     Right = 'right',
+    Stop = 'stop',
 }
 
 interface RobotButtonProps {
     action: Direction;
-    icon: React.ReactNode;
     className?: string;
     isCameraMovement?: boolean;
 }
 
-const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, isCameraMovement = false }) => {
+const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCameraMovement = false }) => {
     const { apiBase, addLog, motorSpeedSlider, cameraZoomSlider } = useConnection();
     const [isActive, setIsActive] = useState(false);
 
+    // Icon
+    const Icon = getIcon(action, isCameraMovement);
+    const rotation = ROTATION[action];
+
+    // Functions
     const handleStart = async () => {
         if (!apiBase) {
             toast.error('No connection!');
@@ -39,25 +45,29 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, i
             let data;
             switch (action) {
                 case Direction.Forward:
-                    data = isCameraMovement
+                    data = !isCameraMovement
                         ? await Robot.Motor.Move.Forward(apiBase, motorSpeedSlider[0])
                         : await Robot.Camera.Move.Up(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Backward:
-                    data = isCameraMovement
+                    data = !isCameraMovement
                         ? await Robot.Motor.Move.Backward(apiBase, motorSpeedSlider[0])
                         : await Robot.Camera.Move.Down(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Right:
-                    data = isCameraMovement
+                    data = !isCameraMovement
                         ? await Robot.Motor.Move.Right(apiBase, motorSpeedSlider[0])
                         : await Robot.Camera.Move.Right(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Left:
-                    data = isCameraMovement
+                    data = !isCameraMovement
                         ? await Robot.Motor.Move.Left(apiBase, motorSpeedSlider[0])
                         : await Robot.Camera.Move.Left(apiBase, cameraZoomSlider[0]);
                     break;
+                case Direction.Stop:
+                    data = !isCameraMovement
+                        ? await Robot.Motor.Stop(apiBase)
+                        : await Robot.Camera.Stop(apiBase);
                 default:
                     data = { "Direction": `${action} not implemented yet` }
                     setIsActive(false);
@@ -92,16 +102,22 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, i
                 className={cn(
                     // allow passing extra classes from parent
                     className,
+
                     // mobile-friendly circular control look
                     'w-20 h-20 p-0 rounded-full flex items-center justify-center',
                     'text-2xl',
                     'bg-gradient-to-br from-slate-800 to-slate-700 text-white',
                     'shadow-2xl ring-1 ring-black/20',
                     'transition-transform duration-150 ease-out',
+
                     // tactile feedback
                     'active:scale-95 active:brightness-110',
+
                     // subtle hover for desktop
                     'hover:scale-105 hover:brightness-105',
+
+                    // emergency stop look
+                    action === Direction.Stop && "bg-red-600 hover:bg-red-700 text-white h-16",
                 )}
                 size={'lg'}
                 onMouseDown={handleStart}
@@ -112,10 +128,30 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, icon, className, i
                 aria-pressed={isActive}
                 aria-label={`move-${action}`}
             >
-                {icon}
+                {<Icon size={16} className={rotation} />}
             </Button>
         </Label>
     );
 };
+
+const ROTATION: Record<Direction, string> = {
+    [Direction.Forward]: "",
+    [Direction.Backward]: "rotate-180",
+    [Direction.Right]: "rotate-90",
+    [Direction.Left]: "-rotate-90",
+    [Direction.Stop]: "",
+};
+
+const getIcon = (action: Direction, isCameraMovement: boolean) => {
+    if (action === Direction.Stop) {
+        return isCameraMovement
+            ? Icons.Controls.Camera.Stop
+            : Icons.Controls.Motor.Stop
+    }
+
+    return isCameraMovement
+        ? Icons.Controls.Camera.Move
+        : Icons.Controls.Motor.Move
+}
 
 export default MovementButton;
