@@ -5,7 +5,7 @@ import NoCameraFeed from "./no-camera-feed";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import StatusIndicator from "./status-indicator";
-import { Robot } from "@/lib/api/robot-api-control";
+import { SAQI } from "@/lib/saqi.index";
 
 
 function CameraViewer() {
@@ -24,8 +24,8 @@ function CameraViewer() {
         }
 
         addLog(`Trying to fetch camera feed → ${isVisionOn
-            ? Robot.VideoFeed.Auto(apiBase)
-            : Robot.VideoFeed.Manual(apiBase)
+            ? SAQI.Robot.VideoFeed.Auto(apiBase)
+            : SAQI.Robot.VideoFeed.Manual(apiBase)
             }`);
         setIsCameraFeed(true);
     }, [apiBase, isConnected, refreshTrigger]);
@@ -43,8 +43,8 @@ function CameraViewer() {
                         // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcJJ1UUym2YlvyeGhJ9AKvnkLeSiyGyEkCA&s"
                         src={
                             isVisionOn
-                                ? Robot.VideoFeed.Auto(apiBase)
-                                : Robot.VideoFeed.Manual(apiBase)
+                                ? SAQI.Robot.VideoFeed.Auto(apiBase)
+                                : SAQI.Robot.VideoFeed.Manual(apiBase)
                         }
                         alt="Camera feed"
                         // onLoad={() => {

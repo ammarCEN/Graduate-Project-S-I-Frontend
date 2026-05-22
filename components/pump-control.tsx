@@ -1,15 +1,12 @@
 'use client';
 
 import useConnection from "@/app/providers/api-provider";
-import { Card, CardContent } from "./ui/card";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
 import HeaderComponent from "./header-component";
 import { IoWaterOutline } from "react-icons/io5";
-import { Robot } from "@/lib/api/robot-api-control";
+import { SAQI } from "@/lib/saqi.index";
 import TouchableCard from "./touchable-card";
-import { cn } from "@/lib/utils";
-
 
 const PumpControl = () => {
     const { isPumpOn, setIsPumpOn, apiBase, isConnected, addLog } = useConnection();
@@ -23,11 +20,11 @@ const PumpControl = () => {
 
         let data;
         if (isPumpOn) {
-            data = await Robot.Pump.Deactivate(apiBase);
+            data = await SAQI.Robot.Pump.Deactivate(apiBase);
             setIsPumpOn(false);
         }
         else {
-            data = await Robot.Pump.Active(apiBase);
+            data = await SAQI.Robot.Pump.Active(apiBase);
             setIsPumpOn(true);
         }
 

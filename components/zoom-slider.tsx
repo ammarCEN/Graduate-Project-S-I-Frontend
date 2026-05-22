@@ -3,9 +3,8 @@
 import { Slider } from "@/components/ui/slider";
 import HeaderComponent from "./header-component";
 import useConnection from "@/app/providers/api-provider";
-import { Icons } from "@/lib/icons";
 import { toast } from "sonner";
-import { Robot } from "@/lib/api/robot-api-control";
+import { SAQI } from "@/lib/saqi.index";
 
 
 
@@ -18,7 +17,7 @@ export default function ZoomSlider() {
             addLog(`Cannot adjust zoom — robot not connected`);
             return;
         }
-        const data = await Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
+        const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
         addLog(data);
     }
     return (
@@ -45,7 +44,7 @@ export default function ZoomSlider() {
                 // description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
                 // description={`${cameraZoomSlider[0]}`}
                 description={""}
-                icon={Icons.Controls.Camera.Slider}
+                icon={SAQI.Icons.Controls.Camera.Slider}
             />
         </div>
     );

@@ -6,8 +6,7 @@ import { toast } from 'sonner';
 import React, { useState } from 'react';
 import { Label } from './ui/label';
 import { cn } from '@/lib/utils';
-import { Robot } from '@/lib/api/robot-api-control';
-import { Icons } from '@/lib/icons';
+import { SAQI } from '@/lib/saqi.index';
 
 export enum Direction {
     Forward = 'forward',
@@ -46,28 +45,28 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
             switch (action) {
                 case Direction.Forward:
                     data = !isCameraMovement
-                        ? await Robot.Motor.Move.Forward(apiBase, motorSpeedSlider[0])
-                        : await Robot.Camera.Move.Up(apiBase, cameraZoomSlider[0]);
+                        ? await SAQI.Robot.Motor.Move.Forward(apiBase, motorSpeedSlider[0])
+                        : await SAQI.Robot.Camera.Move.Up(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Backward:
                     data = !isCameraMovement
-                        ? await Robot.Motor.Move.Backward(apiBase, motorSpeedSlider[0])
-                        : await Robot.Camera.Move.Down(apiBase, cameraZoomSlider[0]);
+                        ? await SAQI.Robot.Motor.Move.Backward(apiBase, motorSpeedSlider[0])
+                        : await SAQI.Robot.Camera.Move.Down(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Right:
                     data = !isCameraMovement
-                        ? await Robot.Motor.Move.Right(apiBase, motorSpeedSlider[0])
-                        : await Robot.Camera.Move.Right(apiBase, cameraZoomSlider[0]);
+                        ? await SAQI.Robot.Motor.Move.Right(apiBase, motorSpeedSlider[0])
+                        : await SAQI.Robot.Camera.Move.Right(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Left:
                     data = !isCameraMovement
-                        ? await Robot.Motor.Move.Left(apiBase, motorSpeedSlider[0])
-                        : await Robot.Camera.Move.Left(apiBase, cameraZoomSlider[0]);
+                        ? await SAQI.Robot.Motor.Move.Left(apiBase, motorSpeedSlider[0])
+                        : await SAQI.Robot.Camera.Move.Left(apiBase, cameraZoomSlider[0]);
                     break;
                 case Direction.Stop:
                     data = !isCameraMovement
-                        ? await Robot.Motor.Stop(apiBase)
-                        : await Robot.Camera.Stop(apiBase);
+                        ? await SAQI.Robot.Motor.Stop(apiBase)
+                        : await SAQI.Robot.Camera.Stop(apiBase);
                 default:
                     data = { "Direction": `${action} not implemented yet` }
                     setIsActive(false);
@@ -86,9 +85,9 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
             let data;
 
             if (isCameraMovement)
-                data = await Robot.Camera.Stop(apiBase);
+                data = await SAQI.Robot.Camera.Stop(apiBase);
             else
-                data = await Robot.Motor.Stop(apiBase);
+                data = await SAQI.Robot.Motor.Stop(apiBase);
 
             addLog(data);
         } catch (err: any) {
@@ -145,13 +144,13 @@ const ROTATION: Record<Direction, string> = {
 const getIcon = (action: Direction, isCameraMovement: boolean) => {
     if (action === Direction.Stop) {
         return isCameraMovement
-            ? Icons.Controls.Camera.Stop
-            : Icons.Controls.Motor.Stop
+            ? SAQI.Icons.Controls.Camera.Stop
+            : SAQI.Icons.Controls.Motor.Stop
     }
 
     return isCameraMovement
-        ? Icons.Controls.Camera.Move
-        : Icons.Controls.Motor.Move
+        ? SAQI.Icons.Controls.Camera.Move
+        : SAQI.Icons.Controls.Motor.Move
 }
 
 export default MovementButton;

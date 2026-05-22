@@ -13,7 +13,7 @@ const MotorNavigationButtons = () => {
                 <div className='flex flex-col items-center justify-center gap-4'>
                     <HeaderComponent
                         title='Movement Buttons'
-                        description='These bottom buttons are interactive navigation buttons to start moving until unclick and then automatically stopping the robot.'
+                        description='These bottom buttons are interactive navigation buttons to start moving until unclick and then automatically stopping the SAQI.Robot.'
                         // description=''
                         icon={PiTireDuotone}
                     />

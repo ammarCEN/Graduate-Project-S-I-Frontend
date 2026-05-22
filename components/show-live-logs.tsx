@@ -59,7 +59,7 @@ const ShowLiveLogs = () => {
             System Live Logger <span className='!text-destructive font-bold'>( {logs.length} )</span>
           </DialogTitle>
           <DialogDescription>
-            Here you can show all logs returned from robot.
+            Here you can show all logs returned from Robot.
           </DialogDescription>
         </DialogHeader>
 

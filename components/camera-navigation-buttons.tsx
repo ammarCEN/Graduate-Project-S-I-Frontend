@@ -1,14 +1,13 @@
 'use client';
 
 import useConnection from "@/app/providers/api-provider";
-import { Card, CardContent, CardFooter } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import HeaderComponent from "./header-component";
 import MovementButton, { Direction } from "./single-navigation-button";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
-import { Robot } from "@/lib/api/robot-api-control";
+import { SAQI } from "@/lib/saqi.index";
 import ZoomSlider from "./zoom-slider";
-import { Icons } from "@/lib/icons";
 import { Separator } from "./ui/separator";
 
 
@@ -23,7 +22,7 @@ const CameraNavigationButtons = () => {
             return
         }
 
-        const data = await Robot.Camera.Center(apiBase);
+        const data = await SAQI.Robot.Camera.Center(apiBase);
         addLog(data);
     }
 
@@ -34,7 +33,7 @@ const CameraNavigationButtons = () => {
             return
         }
         setCameraZoomSlider([1]);
-        const data = await Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
+        const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
         addLog(data);
     }
 
@@ -46,7 +45,7 @@ const CameraNavigationButtons = () => {
         }
 
         setCameraZoomSlider([9999]);
-        const data = await Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
+        const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
         addLog(data);
     }
 
@@ -57,7 +56,7 @@ const CameraNavigationButtons = () => {
                     <HeaderComponent
                         title='Camera Control'
                         description='These buttons are interactive camera controls that start moving the camera when pressed and stop automatically when released.'
-                        icon={Icons.Titles.CameraMovement}
+                        icon={SAQI.Icons.Titles.CameraMovement}
                     />
                     <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="w-full flex items-center justify-evenly gap-0 md:gap-6">
@@ -84,14 +83,14 @@ const CameraNavigationButtons = () => {
                         {/* Shortcuts buttons */}
                         <div className="flex flex-row md:flex-col gap-4 justify-center">
                             <Button variant='outline' onClick={handleMaxZoomCamera}>
-                                <Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
+                                <SAQI.Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
                             </Button>
                             <Button variant='outline' onClick={handleWideCamera}>
-                                <Icons.Controls.Camera.Zoom.Min_Zoom /> Wide
+                                <SAQI.Icons.Controls.Camera.Zoom.Min_Zoom /> Wide
                             </Button>
                             <Separator className="hidden md:block" />
                             <Button variant='outline' onClick={handleCenterCamera}>
-                                <Icons.Controls.Camera.Center /> Center
+                                <SAQI.Icons.Controls.Camera.Center /> Center
                             </Button>
                         </div>
 
@@ -129,9 +128,8 @@ export default CameraNavigationButtons
 // import MovementButton, { Direction } from "./single-navigation-button";
 // import { Button } from "./ui/button";
 // import { toast } from "sonner";
-// import { Robot } from "@/lib/api/robot-api-control";
+// import { SAQI } from "@/lib/saqi.index";
 // import ZoomSlider from "./zoom-slider";
-// import { Icons } from "@/lib/icons";
 // import { Separator } from "./ui/separator";
 // import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 // import { ChevronDownIcon, ChevronsUpDownIcon } from "lucide-react";
@@ -148,7 +146,7 @@ export default CameraNavigationButtons
 //             return
 //         }
 
-//         const data = await Robot.Camera.Center(apiBase);
+//         const data = await SAQI.Robot.Camera.Center(apiBase);
 //         addLog(data);
 //     }
 
@@ -159,7 +157,7 @@ export default CameraNavigationButtons
 //             return
 //         }
 //         setCameraZoomSlider([1]);
-//         const data = await Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
+//         const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
 //         addLog(data);
 //     }
 
@@ -171,7 +169,7 @@ export default CameraNavigationButtons
 //         }
 
 //         setCameraZoomSlider([9999]);
-//         const data = await Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
+//         const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);
 //         addLog(data);
 //     }
 
@@ -184,7 +182,7 @@ export default CameraNavigationButtons
 //                         title='Camera Control'
 //                         // description='These buttons are interactive camera controls that start moving the camera when pressed and stop automatically when released.'
 //                         description=""
-//                         icon={Icons.Titles.CameraMovement}
+//                         icon={SAQI.Icons.Titles.CameraMovement}
 //                     />
 //                     <ChevronDownIcon className='text-muted-foreground transition-transform in-data-[state=open]:rotate-180' />
 //                 </div>
@@ -193,14 +191,14 @@ export default CameraNavigationButtons
 //             <CardContent>
 //                 <div className="flex  gap-4 justify-center">
 //                     <Button variant='outline' onClick={handleCenterCamera}>
-//                         <Icons.Controls.Camera.Center /> Center
+//                         <SAQI.Icons.Controls.Camera.Center /> Center
 //                     </Button>
 //                     {/* <Separator /> */}
 //                     <Button variant='outline' onClick={handleWideCamera}>
-//                         <Icons.Controls.Camera.Zoom.Min_Zoom /> Wide
+//                         <SAQI.Icons.Controls.Camera.Zoom.Min_Zoom /> Wide
 //                     </Button>
 //                     <Button variant='outline' onClick={handleMaxZoomCamera}>
-//                         <Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
+//                         <SAQI.Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
 //                     </Button>
 //                 </div>
 //                 <CollapsibleContent className='mt-6 data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down flex flex-col gap-2 overflow-hidden transition-all duration-300'>
