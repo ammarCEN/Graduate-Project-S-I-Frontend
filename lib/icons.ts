@@ -5,6 +5,7 @@ import { MdOutlineBlurOff } from "react-icons/md";
 import { TbArrowMoveUp, TbZoomPan } from "react-icons/tb";
 import { GrZoomIn, GrZoomOut } from "react-icons/gr";
 import { RiDragMoveLine } from "react-icons/ri";
+import { PiTireDuotone } from "react-icons/pi";
 
 
 const System = {
@@ -13,7 +14,7 @@ const System = {
 }
 
 const Titles = {
-    // MotorMovement: ,
+    MotorMovement: PiTireDuotone,
     CameraMovement: BsCameraVideo,
     // AIAssistant: ,
     // Pump: ,

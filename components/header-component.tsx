@@ -15,16 +15,27 @@ const HeaderComponent = ({ title, description, icon: Icon }: HeaderComponentProp
         <div className={cn(
             styles.headerTitle,
             "select-none",
-            "flex flex-col gap-1",
+            "flex flex-row items-center gap-4",
         )}>
-            <div className='flex gap-2 items-center'>
-                <Icon size={20} />
+            <Icon size={40} />
+            <div className='flex flex-col items-start'>
                 <h1>{title}</h1>
+                <p>{description}</p>
             </div>
-            <p>
-                {description}
-            </p>
         </div>
+        // <div className={cn(
+        //     styles.headerTitle,
+        //     "select-none",
+        //     "flex flex-col gap-1",
+        // )}>
+        //     <div className='flex gap-2 items-center'>
+        //         <Icon size={20} />
+        //         <h1>{title}</h1>
+        //     </div>
+        //     <p>
+        //         {description}
+        //     </p>
+        // </div>
     )
 }
 

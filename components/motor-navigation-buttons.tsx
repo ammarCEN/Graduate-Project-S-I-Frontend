@@ -14,6 +14,7 @@ const MotorNavigationButtons = () => {
                     <HeaderComponent
                         title='Movement Buttons'
                         description='These bottom buttons are interactive navigation buttons to start moving until unclick and then automatically stopping the robot.'
+                        // description=''
                         icon={PiTireDuotone}
                     />
                     <div className='flex flex-col items-center justify-center gap-2'>

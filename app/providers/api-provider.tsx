@@ -1,4 +1,5 @@
 'use client';
+
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type ConnectionContextType = {
@@ -47,6 +48,17 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
 
     // Logs
     const addLog = (entry: any) => {
+        const date = new Date();
+        const timestamp = new Intl.DateTimeFormat('en-CA', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        }).format(date).replace(',', '');
+
         const formatted =
             typeof entry === "string"
                 ? entry
@@ -54,7 +66,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
                     .map(([key, value]) => `${key}: ${value}`)
                     .join(" | ");
 
-        setLogs(prev => [...prev, `▶ ${formatted}`]);
+        setLogs(prev => [...prev, `▶ [${timestamp}] ${formatted}`]);
     };
 
     const clearLogs = () => setLogs([]);

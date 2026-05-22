@@ -56,7 +56,7 @@ const ShowLiveLogs = () => {
       <DialogContent className="md:max-w-3xl">
         <DialogHeader>
           <DialogTitle>
-            System Live Logger
+            System Live Logger <span className='!text-destructive font-bold'>( {logs.length} )</span>
           </DialogTitle>
           <DialogDescription>
             Here you can show all logs returned from robot.

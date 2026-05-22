@@ -83,15 +83,15 @@ const CameraNavigationButtons = () => {
 
                         {/* Shortcuts buttons */}
                         <div className="flex flex-row md:flex-col gap-4 justify-center">
-                            <Button variant='outline' onClick={handleCenterCamera}>
-                                <Icons.Controls.Camera.Center /> Center
+                            <Button variant='outline' onClick={handleMaxZoomCamera}>
+                                <Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
                             </Button>
-                            <Separator className="hidden md:block" />
                             <Button variant='outline' onClick={handleWideCamera}>
                                 <Icons.Controls.Camera.Zoom.Min_Zoom /> Wide
                             </Button>
-                            <Button variant='outline' onClick={handleMaxZoomCamera}>
-                                <Icons.Controls.Camera.Zoom.Max_Zoom /> Max Zoom
+                            <Separator className="hidden md:block" />
+                            <Button variant='outline' onClick={handleCenterCamera}>
+                                <Icons.Controls.Camera.Center /> Center
                             </Button>
                         </div>
 

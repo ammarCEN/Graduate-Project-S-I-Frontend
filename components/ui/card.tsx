@@ -14,13 +14,15 @@ function Card({
       className={cn(
         "group/card flex flex-col gap-6 overflow-hidden rounded-xl py-6 text-sm text-card-foreground shadow-xs ring-1 ring-foreground/10 has-[>img:first-child]:pt-0 data-[size=sm]:gap-4 data-[size=sm]:py-4 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
 
+        "transition-all duration-600",
+
         "bg-card",
 
         // light mode
-        // "bg-gradient-to-r from-gray-50 to-gray-100",
+        "bg-gradient-to-r from-gray-50 to-gray-100",
 
         // dark mode
-        // "dark:bg-gradient-to-r dark:from-zinc-700 dark:to-gray-900",
+        "dark:bg-gradient-to-b dark:from-zinc-900 dark:via-neutral-900 dark:to-gray-500/5",
 
         "shadow-sm",
         className

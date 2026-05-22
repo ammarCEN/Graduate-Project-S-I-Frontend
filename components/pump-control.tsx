@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import HeaderComponent from "./header-component";
 import { IoWaterOutline } from "react-icons/io5";
 import { Robot } from "@/lib/api/robot-api-control";
+import TouchableCard from "./touchable-card";
+import { cn } from "@/lib/utils";
 
 
 const PumpControl = () => {
@@ -32,19 +34,33 @@ const PumpControl = () => {
         addLog(data);
     }
     return (
-        <Card className="w-full">
-            <CardContent className="flex justify-between items-center">
-                <HeaderComponent
-                    title='Pump Control'
-                    description='Enable or disable pump control.'
-                    icon={IoWaterOutline}
-                />
-                <Switch
-                    disabled={!isConnected}
-                    checked={isPumpOn}
-                    onCheckedChange={handleTogglePump} />
-            </CardContent>
-        </Card>
+        <TouchableCard
+            onClick={handleTogglePump}
+        >
+            <HeaderComponent
+                title='Pump Control'
+                description='Enable or disable pump control.'
+                icon={IoWaterOutline}
+            />
+            <Switch
+                disabled={!isConnected}
+                checked={isPumpOn}
+                onCheckedChange={handleTogglePump}
+            />
+        </TouchableCard>
+        // <Card className="w-full">
+        //     <CardContent className="flex justify-between items-center">
+        //         <HeaderComponent
+        //             title='Pump Control'
+        //             description='Enable or disable pump control.'
+        //             icon={IoWaterOutline}
+        //         />
+        //         <Switch
+        //             disabled={!isConnected}
+        //             checked={isPumpOn}
+        //             onCheckedChange={handleTogglePump} />
+        //     </CardContent>
+        // </Card>
     )
 }
 

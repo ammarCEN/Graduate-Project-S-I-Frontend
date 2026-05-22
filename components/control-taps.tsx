@@ -9,6 +9,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
+import { Icons } from '@/lib/icons';
 
 const ControlTaps = () => {
     return (
@@ -16,8 +17,8 @@ const ControlTaps = () => {
             "md:w-1/2 w-full"
         )}>
             <TabsList>
-                <TabsTrigger value="motor">Movement controller</TabsTrigger>
-                <TabsTrigger value="camera">Camera controller</TabsTrigger>
+                <TabsTrigger value="motor">{<Icons.Titles.MotorMovement />} Movement controller</TabsTrigger>
+                <TabsTrigger value="camera">{<Icons.Titles.CameraMovement />} Camera controller</TabsTrigger>
             </TabsList>
             <TabsContents className='border rounded-xl shadow-sm'>
                 <TabsContent value="motor">

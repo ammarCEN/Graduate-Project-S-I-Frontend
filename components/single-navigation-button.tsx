@@ -107,7 +107,7 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
                     'w-20 h-20 p-0 rounded-full flex items-center justify-center',
                     'text-2xl',
                     'bg-gradient-to-br from-slate-800 to-slate-700 text-white',
-                    'shadow-2xl ring-1 ring-black/20',
+                    'shadow-2xl ring-2 ring-foreground/20',
                     'transition-transform duration-600 ease-out',
 
                     // tactile feedback
@@ -126,9 +126,9 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
                 onTouchStart={handleStart}
                 onTouchEnd={handleStop}
                 aria-pressed={isActive}
-                aria-label={`move-${action}`}
+                aria-label={`action-${action}`}
             >
-                {<Icon size={16} className={rotation} />}
+                {<Icon size={16} className={cn(rotation, "scale-140")} />}
             </Button>
         </Label>
     );
