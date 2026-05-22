@@ -32,7 +32,7 @@ const PumpControl = () => {
         addLog(data);
     }
     return (
-        <Card>
+        <Card className="w-full">
             <CardContent className="flex justify-between items-center">
                 <HeaderComponent
                     title='Pump Control'

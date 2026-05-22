@@ -23,13 +23,12 @@ function CameraViewer() {
             return;
         }
 
-        setIsCameraFeed(true);
         addLog(`Trying to fetch camera feed → ${isVisionOn
             ? Robot.VideoFeed.Auto(apiBase)
             : Robot.VideoFeed.Manual(apiBase)
             }`);
+        setIsCameraFeed(true);
     }, [apiBase, isConnected, refreshTrigger]);
-
 
     return (
         <>
@@ -37,19 +36,20 @@ function CameraViewer() {
             <div className="w-full border rounded-md">
                 {cameraConnectionStatus
                     ?
-                    <NoCameraFeed onRefresh={() => setRefreshTrigger(!refreshTrigger)} />
+                    <NoCameraFeed onRefresh={() => setRefreshTrigger(prev => !prev)} />
                     :
                     <img
-                        className="w-full p-4 rounded-xl"
-                        // src={handleCameraFeed}
-                        // src='http://192.168.8.183:8081/video'
-                        // src={PureCameraFeed(apiBase)}
+                        className="max-h-[80vh] p-4 rounded-xl"
+                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcJJ1UUym2YlvyeGhJ9AKvnkLeSiyGyEkCA&s"
                         src={
                             isVisionOn
                                 ? Robot.VideoFeed.Auto(apiBase)
                                 : Robot.VideoFeed.Manual(apiBase)
                         }
                         alt="Camera feed"
+                        // onLoad={() => {
+                        //     toast.info("CAM LOADED")
+                        // }}
                         onError={() => {
                             setIsCameraFeed(false);
                             toast.error("No camera feed!");
@@ -60,8 +60,7 @@ function CameraViewer() {
                                 addLog("Camera feed failed to fetch");
                             }
                         }}
-                    >
-                    </img>
+                    />
                 }
             </div>
         </>

@@ -108,7 +108,7 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
                     'text-2xl',
                     'bg-gradient-to-br from-slate-800 to-slate-700 text-white',
                     'shadow-2xl ring-1 ring-black/20',
-                    'transition-transform duration-150 ease-out',
+                    'transition-transform duration-600 ease-out',
 
                     // tactile feedback
                     'active:scale-95 active:brightness-110',

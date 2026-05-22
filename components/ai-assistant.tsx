@@ -5,7 +5,6 @@ import useConnection from "@/app/providers/api-provider";
 import { Card, CardContent } from "./ui/card";
 import { Switch } from "./ui/switch";
 import { toast } from "sonner";
-import { useState } from "react";
 import HeaderComponent from "./header-component";
 import { GiBrain } from "react-icons/gi";
 
@@ -48,15 +47,17 @@ const AIAssistant = () => {
 
         <Card
             className={cn(
-                "cursor-pointer",
+                "w-full",
 
-                "relative overflow-hidden border transition-all duration-300 shadow-lg hover:shadow-xl", // Enhanced shadow for futuristic feel
+                "cursor-pointer border-primary/30",
 
-                // Light mode (futuristic clean)
-                "bg-gradient-to-br from-gray-50 to-blue-100 border-blue-200", // Cooler tones for a tech vibe
+                "relative overflow-hidden border transition-all duration-800 shadow-lg hover:shadow-xl", // Enhanced shadow for futuristic feel
 
-                // Dark mode (futuristic deep)
-                "dark:from-gray-800 dark:to-blue-900 dark:border-blue-800"
+                // Light mode
+                "bg-gradient-to-br from-primary/30 to-primary/30 ",
+
+                // Dark mode
+                "dark:bg-gradient-to-br dark:from-primary/30 dark:to-primary/20",
             )}
             onClick={handleToggleVision}
         >
@@ -64,7 +65,7 @@ const AIAssistant = () => {
             <div
                 className={cn(
                     "absolute -inset-1 blur-3xl opacity-30", // Increased blur and opacity for a glowing effect
-                    "bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500", // Cooler gradient for a tech feel
+                    "bg-gradient-to-r from-primary via-primary/70 to-background/50", // Cooler gradient for a tech feel
                     "dark:opacity-40"
                 )}
             />
@@ -82,8 +83,9 @@ const AIAssistant = () => {
                     onCheckedChange={handleToggleVision}
                     className={cn(
                         "data-[state=checked]:bg-gradient-to-r", // Gradient for checked state
-                        "data-[state=checked]:from-blue-500", // Start of gradient
-                        "data-[state=checked]:to-purple-600" // End of gradient
+                        "data-[state=checked]:from-primary/60", // Start of gradient
+                        "data-[state=checked]:via-background/30", // Start of gradient
+                        "data-[state=checked]:to-primary", // End of gradient
                     )}
                 />
             </CardContent>

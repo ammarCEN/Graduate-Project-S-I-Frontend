@@ -6,23 +6,58 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import LiveLogger from './live-log';
 import useConnection from '@/app/providers/api-provider';
 import { MdClearAll } from "react-icons/md";
+import { Badge } from './ui/badge';
+import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 
 
 const ShowLiveLogs = () => {
-  const { clearLogs } = useConnection();
+  const { logs, clearLogs } = useConnection();
+
+  const [unreadCount, setUnreadCount] = useState(-1);
+
+  useEffect(() => {
+    setUnreadCount(prev => {
+      if (logs.length == 0)
+        return 0;
+
+      return prev + 1;
+    });
+  }, [logs]);
+
   return (
     <Dialog>
 
       <DialogTrigger asChild>
-        <Button>
+        <Button
+          variant='outline'
+          className='relative'
+          onClick={() => setUnreadCount(0)}
+        >
           <TbClipboardText />
           System logs
+          {unreadCount > 0 && (
+            <Badge
+              variant="destructive"
+              className={cn(
+                "h-5 w-5 p-2",
+
+                "absolute -top-2 -right-2 flex items-center justify-center text-xs rounded-full",
+
+                "!bg-destructive !text-background !ring-2 !ring-destructive/50"
+              )}
+            >
+              {unreadCount}
+            </Badge>
+          )}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="md:max-w-3xl">
         <DialogHeader>
-          <DialogTitle> System Live Logger </DialogTitle>
+          <DialogTitle>
+            System Live Logger
+          </DialogTitle>
           <DialogDescription>
             Here you can show all logs returned from robot.
           </DialogDescription>

@@ -1,3 +1,5 @@
+'use client';
+
 import { IconPhotoOff } from "@tabler/icons-react"
 import { RefreshCcwIcon } from "lucide-react"
 
@@ -10,8 +12,10 @@ import {
     EmptyMedia,
     EmptyTitle,
 } from "@/components/ui/empty"
+import useConnection from "@/app/providers/api-provider";
 
 function NoCameraFeed({ onRefresh }: { onRefresh: () => void }) {
+    const { isConnected } = useConnection();
     return (
         <Empty>
             <EmptyHeader>
@@ -24,7 +28,7 @@ function NoCameraFeed({ onRefresh }: { onRefresh: () => void }) {
                 </EmptyDescription>
             </EmptyHeader>
             <EmptyContent>
-                <Button variant="outline" size="sm" onClick={onRefresh}>
+                <Button disabled={!isConnected} variant="outline" size="sm" onClick={onRefresh}>
                     <RefreshCcwIcon />
                     Refresh
                 </Button>
