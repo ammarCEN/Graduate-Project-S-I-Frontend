@@ -13,8 +13,8 @@ const PumpControl = () => {
 
     const handleTogglePump = async () => {
         if (!apiBase) {
-            toast.error("No connection!");
-            addLog("Cannot toggle pump — robot not connected");
+            toast.error(SAQI.Logs.System.No_Connection);
+            addLog(SAQI.Logs.Failed.Pump);
             return;
         }
 

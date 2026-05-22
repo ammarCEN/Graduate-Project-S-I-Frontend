@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import HeaderComponent from "./header-component";
 import { GiBrain } from "react-icons/gi";
 import TouchableCard from "./touchable-card";
+import { SAQI } from "@/lib/saqi.index";
 
 
 
@@ -15,19 +16,19 @@ const AIAssistant = () => {
 
     const handleToggleVision = async () => {
         if (!apiBase) {
-            toast.error("No connection!");
-            addLog("Cannot toggle vision — robot not connected");
+            toast.error(SAQI.Logs.System.No_Connection);
+            addLog(SAQI.Logs.Failed.Vision);
             return;
         }
 
         let data;
         if (isVisionOn) {
             setIsVisionOn(false);
-            data = "ADMIN: Camera Vision Off";
+            data = SAQI.Logs.Success.Vision.Off;
         }
         else {
             setIsVisionOn(true);
-            data = "ADMIN: Camera Vision On";
+            data = SAQI.Logs.Success.Vision.On;
         }
         addLog(data);
     }

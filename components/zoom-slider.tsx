@@ -13,8 +13,8 @@ export default function ZoomSlider() {
 
     const handleZoom = async () => {
         if (!apiBase) {
-            toast.error('No connection!');
-            addLog(`Cannot adjust zoom — robot not connected`);
+            toast.error(SAQI.Logs.System.No_Connection);
+            addLog(SAQI.Logs.Failed.Camera.Zoom_Slider);
             return;
         }
         const data = await SAQI.Robot.Camera.Zoom(apiBase, cameraZoomSlider[0]);

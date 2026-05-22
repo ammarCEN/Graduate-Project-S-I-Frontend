@@ -23,10 +23,9 @@ function CameraViewer() {
             return;
         }
 
-        addLog(`Trying to fetch camera feed → ${isVisionOn
+        addLog(SAQI.Logs.Waiting.Camera_Fetch(isVisionOn
             ? SAQI.Robot.VideoFeed.Auto(apiBase)
-            : SAQI.Robot.VideoFeed.Manual(apiBase)
-            }`);
+            : SAQI.Robot.VideoFeed.Manual(apiBase)));
         setIsCameraFeed(true);
     }, [apiBase, isConnected, refreshTrigger]);
 
@@ -40,24 +39,20 @@ function CameraViewer() {
                     :
                     <img
                         className="max-h-[80vh] p-4 rounded-xl"
-                        // src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgcJJ1UUym2YlvyeGhJ9AKvnkLeSiyGyEkCA&s"
                         src={
                             isVisionOn
                                 ? SAQI.Robot.VideoFeed.Auto(apiBase)
                                 : SAQI.Robot.VideoFeed.Manual(apiBase)
                         }
                         alt="Camera feed"
-                        // onLoad={() => {
-                        //     toast.info("CAM LOADED")
-                        // }}
                         onError={() => {
                             setIsCameraFeed(false);
                             toast.error("No camera feed!");
                             if (!isConnected) {
-                                addLog("Camera feed failed — robot not connected");
+                                addLog(SAQI.Logs.Failed.Camera.NotConnected_Fetch);
                             }
                             else {
-                                addLog("Camera feed failed to fetch");
+                                addLog(SAQI.Logs.Failed.Camera.Connected_Fetch);
                             }
                         }}
                     />

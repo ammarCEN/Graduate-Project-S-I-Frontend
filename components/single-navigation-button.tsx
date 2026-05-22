@@ -33,8 +33,8 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
     // Functions
     const handleStart = async () => {
         if (!apiBase) {
-            toast.error('No connection!');
-            addLog(`Cannot move — robot not connected`);
+            toast.error(SAQI.Logs.System.No_Connection);
+            addLog(SAQI.Logs.Failed.Movement.Connecting);
             return;
         }
 
@@ -73,7 +73,7 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
             }
             addLog(data);
         } catch (err: any) {
-            addLog(`Error moving ${action}: ${err.message}`);
+            addLog(SAQI.Logs.Failed.Movement.Error_Moving(action, err.message));
             setIsActive(false);
         }
     };
@@ -91,7 +91,7 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
 
             addLog(data);
         } catch (err: any) {
-            addLog(`Error stopping: ${err.message}`);
+            addLog(SAQI.Logs.Failed.Movement.Error_Stopping(err.message));
         }
     };
 
