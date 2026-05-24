@@ -3,14 +3,10 @@
 import AIAssistant from "@/components/ai-assistant";
 import CameraViewer from "@/components/camera-viewer";
 import Header from "@/components/header";
-import MotorNavigationButtons from "@/components/motor-navigation-buttons";
 import PumpControl from "@/components/pump-control";
-import SearchIP from "@/components/searchIP";
-import { Card, CardContent } from "@/components/ui/card";
-import { SelectSeparator } from "@/components/ui/select";
+import { Card } from "@/components/ui/card";
 import useConnection from "./providers/api-provider";
 import { cn } from "@/lib/utils";
-import CameraNavigationButtons from "@/components/camera-navigation-buttons";
 import ControlTaps from "@/components/control-taps";
 
 export default function Home() {
@@ -31,7 +27,6 @@ export default function Home() {
 
     )}>
       <Header />
-      <SearchIP />
 
       <div className="flex gap-4 md:gap-6 items-center flex-col md:flex-row">
         <AIAssistant />

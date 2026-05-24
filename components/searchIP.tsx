@@ -30,24 +30,43 @@ function SearchIP() {
     const [isPorted, setIsPorted] = useState(false);
 
     const [protocol, setProtocol] = useState("http");
-    const [ip, setIp] = useState("");
+    const [domain, setDomain] = useState("");
     const [port, setPort] = useState("8000");
 
+    const handleValidInput = () => {
+        const trimmedDomain = domain.trim();
+        const trimmedPort = port.trim();
+
+        if (!trimmedDomain) {
+            toast.error(isPorted
+                ? "Please enter valid IP"
+                : "Please enter valid domain"
+            );
+
+            return false;
+        }
+
+        if (isPorted && !trimmedPort) {
+            toast.error("Please enter valid port");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleConnect = async () => {
+        if (!handleValidInput())
+            return;
+
         setIsSearching(true);
 
-        if (!ip.trim() || !port.trim()) {
-            toast.error("Please enter valid IP and Port");
-            setIsSearching(false);
-            return;
-        }
 
         let base;
         if (isPorted) {
-            base = `${protocol}://${ip}:${port}`;
+            base = `${protocol}://${domain}:${port}`;
         }
         else {
-            base = `${protocol}://${ip}`;
+            base = `${protocol}://${domain}`;
         }
         // toast.info(`Entered URL is: ${base}`);
         addLog({ "Trying to connect": base });
@@ -105,10 +124,10 @@ function SearchIP() {
                             {/* IP */}
                             <InputGroup className="w-full md:flex-4">
                                 <InputGroupInput
-                                    placeholder={isPorted ? "192.168.8.183 or localhost" : "backend-service-example.com"}
+                                    placeholder={isPorted ? "localhost or 192.168.8.183" : "saqi-example.com"}
                                     disabled={isSearching}
-                                    value={ip}
-                                    onChange={(e) => setIp(e.target.value)}
+                                    value={domain}
+                                    onChange={(e) => setDomain(e.target.value)}
                                     name="a"
                                     autoComplete="a"
                                 />

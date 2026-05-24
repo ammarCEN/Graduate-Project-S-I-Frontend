@@ -11,7 +11,7 @@ import { SAQI } from "@/lib/saqi.index";
 
 
 const AIAssistant = () => {
-    const { apiBase, isConnected, addLog } = useConnection();
+    const { apiBase, addLog } = useConnection();
     const { isVisionOn, setIsVisionOn } = useConnection();
 
     const handleToggleVision = async () => {
@@ -35,7 +35,8 @@ const AIAssistant = () => {
     return (
         <TouchableCard
             theme='plant'
-            onClick={handleToggleVision}
+            value={isVisionOn}
+            handleValueToggle={handleToggleVision}
         >
             <HeaderComponent
                 title='AI Assistant'
@@ -43,11 +44,11 @@ const AIAssistant = () => {
                 icon={GiBrain}
             />
 
-            <Switch
+            {/* <Switch
                 disabled={!isConnected}
                 checked={isVisionOn}
                 onCheckedChange={handleToggleVision}
-            />
+            /> */}
         </TouchableCard>
         // <Card
         //     className={cn(

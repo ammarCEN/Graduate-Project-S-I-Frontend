@@ -1,6 +1,7 @@
 import { ModeToggle } from "@/components/toggle-theme";
 import { Card } from "./ui/card";
 import ShowLiveLogs from "./show-live-logs";
+import ConnectSystem from "./connect-system";
 
 const Header = () => {
     return (
@@ -15,6 +16,7 @@ const Header = () => {
                     <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance tracking-widest">SAQI Remote Control</h1>
                 </div>
                 <div className="flex items-center gap-2">
+                    <ConnectSystem />
                     <ShowLiveLogs />
                     <ModeToggle />
                 </div>

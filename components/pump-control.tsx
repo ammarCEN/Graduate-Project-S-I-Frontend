@@ -9,7 +9,7 @@ import { SAQI } from "@/lib/saqi.index";
 import TouchableCard from "./touchable-card";
 
 const PumpControl = () => {
-    const { isPumpOn, setIsPumpOn, apiBase, isConnected, addLog } = useConnection();
+    const { isPumpOn, setIsPumpOn, apiBase, addLog } = useConnection();
 
     const handleTogglePump = async () => {
         if (!apiBase) {
@@ -30,34 +30,25 @@ const PumpControl = () => {
 
         addLog(data);
     }
+
     return (
         <TouchableCard
-            onClick={handleTogglePump}
+            theme="water"
+            value={isPumpOn}
+            handleValueToggle={handleTogglePump}
         >
             <HeaderComponent
-                title='Pump Control'
-                description='Enable or disable pump control.'
+                title='Manual watering'
+                description='Active or de-active robot pump'
                 icon={IoWaterOutline}
             />
-            <Switch
+
+            {/* <Switch
                 disabled={!isConnected}
                 checked={isPumpOn}
                 onCheckedChange={handleTogglePump}
-            />
+            /> */}
         </TouchableCard>
-        // <Card className="w-full">
-        //     <CardContent className="flex justify-between items-center">
-        //         <HeaderComponent
-        //             title='Pump Control'
-        //             description='Enable or disable pump control.'
-        //             icon={IoWaterOutline}
-        //         />
-        //         <Switch
-        //             disabled={!isConnected}
-        //             checked={isPumpOn}
-        //             onCheckedChange={handleTogglePump} />
-        //     </CardContent>
-        // </Card>
     )
 }
 

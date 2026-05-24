@@ -17,9 +17,12 @@ const HeaderComponent = ({ title, description, icon: Icon }: HeaderComponentProp
             "select-none",
             "flex flex-row items-center gap-4",
         )}>
-            <Icon size={40} />
-            <div className='flex flex-col items-start'>
-                <h1>{title}</h1>
+            <Icon className='' size={40} />
+            <div className={cn(
+                'flex flex-col items-start',
+                'shimmer shimmer-angle-15 shimmer-spread-150 shimmer-duration-3000 shimmer-repeat-delay-3000',
+            )}>
+                <h1 className=''>{title}</h1>
                 <p>{description}</p>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { Siren } from "lucide-react";
 import { BsCameraVideo } from "react-icons/bs";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { MdOutlineBlurOff } from "react-icons/md";
-import { TbArrowMoveUp, TbZoomPan } from "react-icons/tb";
+import { TbArrowMoveUp, TbCloudDataConnection, TbZoomPan } from "react-icons/tb";
 import { GrZoomIn, GrZoomOut } from "react-icons/gr";
 import { RiDragMoveLine } from "react-icons/ri";
 import { PiTireDuotone } from "react-icons/pi";
@@ -11,6 +11,7 @@ import { PiTireDuotone } from "react-icons/pi";
 const System = {
     Header: {},
     IPSearch: {},
+    ConnectOnline: TbCloudDataConnection,
 }
 
 const Titles = {
