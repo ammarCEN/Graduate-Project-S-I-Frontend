@@ -28,7 +28,7 @@ const Failed = {
     },
     Camera: {
         NotConnected_Fetch: "Cannot fetch camera feed" + System.Robot_Not_Connected,
-        Connected_Fetch: "Camera feed failed to fetch" + System.Robot_Not_Connected,
+        Connected_Fetch: "Camera feed failed to fetch",
         Center: "Cannot center camera" + System.Robot_Not_Connected,
         Zoom_Slider: "Cannot adjust zoom" + System.Robot_Not_Connected,
         Zoom_Out: "Cannot zoom out camera" + System.Robot_Not_Connected,

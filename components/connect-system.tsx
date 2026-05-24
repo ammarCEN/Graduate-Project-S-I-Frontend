@@ -7,10 +7,11 @@ import { ButtonGroup } from "./ui/button-group";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import SearchIP from "./searchIP";
 import { SAQI } from "@/lib/saqi.index";
-import StatusIndicator from "./status-indicator";
 import SAQIConnectBtn from "./saqi-connect-btn";
+import useConnection from "@/app/providers/api-provider";
 
 const ConnectSystem = () => {
+    const { isConnected, apiBase } = useConnection();
     return (
         <ButtonGroup>
 
@@ -23,10 +24,19 @@ const ConnectSystem = () => {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-min">
+                    {isConnected && (
+                        <DropdownMenuGroup>
+                            <DropdownMenuLabel>
+                                Connected via {apiBase}
+                            </DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                        </DropdownMenuGroup>
+                    )}
+
+
                     <DropdownMenuGroup>
                         <ConnectExternalIPDomainDialog />
                     </DropdownMenuGroup>
-                    {/* <DropdownMenuSeparator /> */}
                 </DropdownMenuContent>
             </DropdownMenu>
         </ButtonGroup>

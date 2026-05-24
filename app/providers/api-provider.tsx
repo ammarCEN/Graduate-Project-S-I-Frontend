@@ -1,5 +1,6 @@
 'use client';
 
+import { SAQI } from "@/lib/saqi.index";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type ConnectionContextType = {
@@ -34,7 +35,7 @@ const ConnectionContext = createContext<ConnectionContextType | undefined>(undef
 export function ConnectionProvider({ children }: { children: ReactNode }) {
     // ----------- States ----------- //
     // -- System
-    const [apiBase, setApiBase] = useState<string | null>(process.env.NEXT_PUBLIC_API_BASE || null);
+    const [apiBase, setApiBase] = useState<string | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const [logs, setLogs] = useState<string[]>([]);
 
@@ -83,7 +84,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
                 const res = await fetch(`${apiBase}/`);
                 setIsConnected(res.ok);
             } catch {
-                setApiBase(process.env.NEXT_PUBLIC_API_BASE || null)
+                setApiBase(null)
                 setIsConnected(false);
             }
         }, 3000);

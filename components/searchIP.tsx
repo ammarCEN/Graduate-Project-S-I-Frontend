@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/tooltip"
 import { Checkbox } from "./ui/checkbox";
 import { Label } from "./ui/label";
+import CustomTooltip from "./custom-tooltip";
 
 function SearchIP() {
     const { setApiBase, setIsConnected, isConnected, addLog } = useConnection();
@@ -99,83 +100,98 @@ function SearchIP() {
                 }}
             >
                 <div className="flex flex-wrap justify-between items-center w-full gap-2 px-4 lg:px-6">
+                    {/* PROTOCOL SELECT */}
+                    <Select value={protocol} onValueChange={setProtocol}>
+                        <SelectTrigger className="w-full md:flex-1">
+                            <SelectValue placeholder="http" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="http">http</SelectItem>
+                            <SelectItem value="https">https</SelectItem>
+                        </SelectContent>
+                    </Select>
 
-                    {process.env.NEXT_PUBLIC_API_BASE && (
-                        <>
-                            <Label className="font-mono">
-                                {process.env.NEXT_PUBLIC_API_BASE}
-                            </Label>
-                        </>
+                    {/* IP */}
+                    <InputGroup className="w-full md:flex-4">
+                        <InputGroupInput
+                            placeholder={isPorted ? "localhost or 192.168.8.183" : "saqi-example.com"}
+                            disabled={isSearching}
+                            value={domain}
+                            onChange={(e) => setDomain(e.target.value)}
+                            name="a"
+                            autoComplete="a"
+                        />
+                    </InputGroup>
+
+                    {/* PORT */}
+                    <CustomTooltip
+                        asChild
+                        content={
+                            <p>Port Number</p>
+                        }
+                    >
+                        <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
+                            <InputGroupInput
+                                placeholder="Port NO."
+                                disabled={isSearching || !isPorted}
+                                value={port}
+                                onChange={(e) => setPort(e.target.value)}
+                            />
+                            <div className="flex gap-2">
+                                <Checkbox
+                                    id="ported"
+                                    checked={isPorted}
+                                    onCheckedChange={(val) => setIsPorted(Boolean(val))}
+                                />
+                                <label
+                                    htmlFor="ported"
+                                    className="text-sm font-medium leading-none cursor-pointer"
+                                >
+                                    Enable Port
+                                </label>
+                            </div>
+                        </InputGroup>
+                    </CustomTooltip>
+                    {/* <Tooltip>
+                        <TooltipTrigger asChild>
+                            <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
+                                <InputGroupInput
+                                    placeholder="Port NO."
+                                    disabled={isSearching || !isPorted}
+                                    value={port}
+                                    onChange={(e) => setPort(e.target.value)}
+                                />
+                                <div className="flex gap-2">
+                                    <Checkbox
+                                        id="ported"
+                                        checked={isPorted}
+                                        onCheckedChange={(val) => setIsPorted(Boolean(val))}
+                                    />
+                                    <label
+                                        htmlFor="ported"
+                                        className="text-sm font-medium leading-none cursor-pointer"
+                                    >
+                                        Enable Port
+                                    </label>
+                                </div>
+                            </InputGroup>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Port Number</p>
+                        </TooltipContent>
+                    </Tooltip> */}
+
+                    {/* Connect Button */}
+                    {!isSearching && (
+                        <Button>
+                            Connect
+                        </Button>
                     )}
 
-                    {!process.env.NEXT_PUBLIC_API_BASE && (
-                        <>
-                            {/* PROTOCOL SELECT */}
-                            <Select value={protocol} onValueChange={setProtocol}>
-                                <SelectTrigger className="w-full md:flex-1">
-                                    <SelectValue placeholder="http" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="http">http</SelectItem>
-                                    <SelectItem value="https">https</SelectItem>
-                                </SelectContent>
-                            </Select>
-
-                            {/* IP */}
-                            <InputGroup className="w-full md:flex-4">
-                                <InputGroupInput
-                                    placeholder={isPorted ? "localhost or 192.168.8.183" : "saqi-example.com"}
-                                    disabled={isSearching}
-                                    value={domain}
-                                    onChange={(e) => setDomain(e.target.value)}
-                                    name="a"
-                                    autoComplete="a"
-                                />
-                            </InputGroup>
-
-                            {/* PORT */}
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <InputGroup className="w-full md:flex-1 pr-4 min-w-50 items-center">
-                                        <InputGroupInput
-                                            placeholder="Port NO."
-                                            disabled={isSearching || !isPorted}
-                                            value={port}
-                                            onChange={(e) => setPort(e.target.value)}
-                                        />
-                                        <div className="flex gap-2">
-                                            <Checkbox
-                                                id="ported"
-                                                checked={isPorted}
-                                                onCheckedChange={(val) => setIsPorted(Boolean(val))}
-                                            />
-                                            <label
-                                                htmlFor="ported"
-                                                className="text-sm font-medium leading-none cursor-pointer"
-                                            >
-                                                Enable Port
-                                            </label>
-                                        </div>
-                                    </InputGroup>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Port Number</p>
-                                </TooltipContent>
-                            </Tooltip>
-
-                            {/* Connect Button */}
-                            {!isSearching && (
-                                <Button>
-                                    Connect
-                                </Button>
-                            )}
-
-                            {isSearching && (
-                                <Button disabled>
-                                    <LoaderIcon className="animate-spin" />
-                                </Button>
-                            )}
-                        </>
+                    {isSearching && (
+                        <Button disabled>
+                            <LoaderIcon className="animate-spin" />
+                        </Button>
                     )}
 
                     {/* Status Indicator */}
