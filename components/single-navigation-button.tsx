@@ -46,22 +46,22 @@ const MovementButton: React.FC<RobotButtonProps> = ({ action, className, isCamer
                 case Direction.Forward:
                     data = !isCameraMovement
                         ? await SAQI.Robot.Motor.Move.Forward(apiBase, motorSpeedSlider[0])
-                        : await SAQI.Robot.Camera.Move.Up(apiBase, cameraZoomSlider[0]);
+                        : await SAQI.Robot.Camera.Move.Up(apiBase);
                     break;
                 case Direction.Backward:
                     data = !isCameraMovement
                         ? await SAQI.Robot.Motor.Move.Backward(apiBase, motorSpeedSlider[0])
-                        : await SAQI.Robot.Camera.Move.Down(apiBase, cameraZoomSlider[0]);
+                        : await SAQI.Robot.Camera.Move.Down(apiBase);
                     break;
                 case Direction.Right:
                     data = !isCameraMovement
                         ? await SAQI.Robot.Motor.Move.Right(apiBase, motorSpeedSlider[0])
-                        : await SAQI.Robot.Camera.Move.Right(apiBase, cameraZoomSlider[0]);
+                        : await SAQI.Robot.Camera.Move.Right(apiBase);
                     break;
                 case Direction.Left:
                     data = !isCameraMovement
                         ? await SAQI.Robot.Motor.Move.Left(apiBase, motorSpeedSlider[0])
-                        : await SAQI.Robot.Camera.Move.Left(apiBase, cameraZoomSlider[0]);
+                        : await SAQI.Robot.Camera.Move.Left(apiBase);
                     break;
                 case Direction.Stop:
                     data = !isCameraMovement

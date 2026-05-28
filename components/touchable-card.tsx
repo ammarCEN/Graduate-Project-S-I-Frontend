@@ -131,7 +131,8 @@ const cardStyles = cva(
 const glowStyles = cva(
   cn(
     "absolute -inset-1 opacity-35 pointer-events-none",
-    "shimmer shimmer-bg shimmer-angle-30 shimmer-spread-200 shimmer-duration-1500 shimmer-repeat-delay-3500",
+    "shimmer shimmer-bg shimmer-angle-30 shimmer-spread-200 shimmer-duration-1000 shimmer-repeat-delay-3500",
+    // "shimmer-color-gray-500"
   ),
   {
     variants: {

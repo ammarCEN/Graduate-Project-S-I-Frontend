@@ -16,8 +16,8 @@ export default function SpeedSlider() {
             <HeaderComponent
                 title={`Movement Speed: ${Math.round(motorSpeedSlider[0] * 100)}%`}
                 // description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
-                description=''
                 icon={IoSpeedometerOutline}
+                iconSize="Small"
             />
             <Slider
                 className="h-12"

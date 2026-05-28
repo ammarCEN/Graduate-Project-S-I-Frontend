@@ -43,8 +43,8 @@ export default function ZoomSlider() {
                 // title={`Zoom: ${getZoomLabel(cameraZoomSlider[0])}`}
                 // description='Adjust the movement speed. Minimum is 20% and maximum is 100%.'
                 // description={`${cameraZoomSlider[0]}`}
-                description={""}
                 icon={SAQI.Icons.Controls.Camera.Slider}
+                iconSize="Small"
             />
         </div>
     );

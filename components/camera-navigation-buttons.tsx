@@ -55,8 +55,9 @@ const CameraNavigationButtons = () => {
                 <div className='flex flex-col items-center justify-center gap-4'>
                     <HeaderComponent
                         title='Camera Control'
-                        description='These buttons are interactive camera controls that start moving the camera when pressed and stop automatically when released.'
+                        // description='These buttons are interactive camera controls that start moving the camera when pressed and stop automatically when released.'
                         icon={SAQI.Icons.Titles.CameraMovement}
+                        iconSize="Small"
                     />
                     <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6">
                         <div className="w-full flex items-center justify-evenly gap-0 md:gap-6">

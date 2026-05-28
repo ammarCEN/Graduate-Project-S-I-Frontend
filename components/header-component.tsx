@@ -6,24 +6,31 @@ import { cn } from '@/lib/utils';
 
 type HeaderComponentProps = {
     title: string;
-    description: string;
+    description?: string;
     icon: IconType;
+    iconSize?: 'Medium' | 'Small';
 }
 
-const HeaderComponent = ({ title, description, icon: Icon }: HeaderComponentProps) => {
+const HeaderComponent = ({ title, description, icon: Icon, iconSize = 'Medium' }: HeaderComponentProps) => {
+    const isIconSmall = iconSize === 'Small';
+    const sizeOfIcon = isIconSmall ? 25 : 40;
+
     return (
         <div className={cn(
             styles.headerTitle,
             "select-none",
-            "flex flex-row items-center gap-4",
+            "flex flex-row items-center",
+            isIconSmall ? "gap-2" : "gap-4",
         )}>
-            <Icon className='' size={40} />
+            <Icon size={sizeOfIcon} />
             <div className={cn(
                 'flex flex-col items-start',
                 'shimmer shimmer-angle-15 shimmer-spread-150 shimmer-duration-3000 shimmer-repeat-delay-3000',
             )}>
-                <h1 className=''>{title}</h1>
-                <p>{description}</p>
+                <h1>{title}</h1>
+                {description && (
+                    <p>{description}</p>
+                )}
             </div>
         </div>
         // <div className={cn(

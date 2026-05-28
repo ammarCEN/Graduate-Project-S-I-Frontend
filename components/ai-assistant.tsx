@@ -40,7 +40,7 @@ const AIAssistant = () => {
         >
             <HeaderComponent
                 title='AI Assistant'
-                description='Enable or disable AI classification boxes.'
+                description='Switch between manual and autonomous control'
                 icon={GiBrain}
             />
 
