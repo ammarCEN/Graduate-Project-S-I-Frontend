@@ -1,4 +1,4 @@
-import { AiCameraFeed, cameraMoveDown, cameraMoveLeft, cameraMoveRight, cameraMoveUp, cameraSetCenter, cameraStop, cameraZoom, ManualCameraFeed, motorMoveBackward, motorMoveForward, motorMoveLeft, motorMoveRight, motorStop, PumpOff, PumpOn, PumpStatus } from "./api";
+import { AiCameraFeed, cameraMoveDown, cameraMoveLeft, cameraMoveRight, cameraMoveUp, cameraSetCenter, cameraStop, cameraZoom, ManualCameraFeed, motorMoveBackward, motorMoveForward, motorMoveLeft, motorMoveRight, motorStop, PumpOff, PumpOn, PumpStatus, UltrasonicDistance } from "./api";
 
 
 const Motor = {
@@ -34,9 +34,14 @@ const VideoFeed = {
     Auto: AiCameraFeed,
 }
 
+const Ultrasonic = {
+    getDistance: UltrasonicDistance,
+}
+
 export const Robot = {
     Motor,
     Camera,
+    Ultrasonic,
     Pump,
     VideoFeed,
 }

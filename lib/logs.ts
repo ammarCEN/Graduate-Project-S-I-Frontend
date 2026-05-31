@@ -21,6 +21,7 @@ const Warning = {
 const Failed = {
     Vision: "Cannot toggle vision" + System.Robot_Not_Connected,
     Pump: "Cannot toggle pump" + System.Robot_Not_Connected,
+    Ultrasonic: "Cannot read distance" + System.Robot_Not_Connected,
     Movement: {
         Connecting: "Cannot move" + System.Robot_Not_Connected,
         Error_Moving: (direction: string, err: string) => `Cannot moving ${direction}: ${err}`,

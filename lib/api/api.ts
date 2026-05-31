@@ -78,7 +78,9 @@ export const PumpStatus = (BASE: string) =>
     safeFetch(fetch(`${BASE}/pump/status`, { method: "GET", cache: 'no-store' }));
 
 
-
+// Ultrasonic Control
+export const UltrasonicDistance = (BASE: string) =>
+    safeFetch(fetch(`${BASE}/ultrasonic/scan`, { method: "GET", cache: 'no-store' }));
 
 
 // --- Video Feed ---

@@ -2,7 +2,7 @@ import { Siren } from "lucide-react";
 import { BsCameraVideo } from "react-icons/bs";
 import { FaAngleDoubleUp } from "react-icons/fa";
 import { MdOutlineBlurOff } from "react-icons/md";
-import { TbArrowMoveUp, TbCloudDataConnection, TbZoomPan } from "react-icons/tb";
+import { TbArrowMoveUp, TbBoxAlignTop, TbBoxAlignTopFilled, TbCloudDataConnection, TbZoomPan } from "react-icons/tb";
 import { GrZoomIn, GrZoomOut } from "react-icons/gr";
 import { RiDragMoveLine } from "react-icons/ri";
 import { PiTireDuotone } from "react-icons/pi";
@@ -17,6 +17,7 @@ const System = {
 const Titles = {
     MotorMovement: PiTireDuotone,
     CameraMovement: BsCameraVideo,
+    Ultrasonic: TbBoxAlignTop,
     // AIAssistant: ,
     // Pump: ,
 }
@@ -37,6 +38,9 @@ const Controls = {
             Min_Zoom: GrZoomOut,
         }
     },
+    // Ultrasonic: {
+    //     Dis
+    // }
 }
 
 export const Icons = {

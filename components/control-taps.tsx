@@ -9,6 +9,7 @@ import {
     TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
 import { SAQI } from '@/lib/saqi.index';
+import UltrasonicComponent from './ultrasonic-component';
 
 const ControlTaps = () => {
     return (
@@ -18,6 +19,7 @@ const ControlTaps = () => {
             <TabsList>
                 <TabsTrigger value="motor">{<SAQI.Icons.Titles.MotorMovement />} Movement controller</TabsTrigger>
                 <TabsTrigger value="camera">{<SAQI.Icons.Titles.CameraMovement />} Camera controller</TabsTrigger>
+                <TabsTrigger value="ultrasonic">{<SAQI.Icons.Titles.Ultrasonic />} Distance controller</TabsTrigger>
             </TabsList>
             <TabsContents className='border rounded-xl shadow-sm'>
                 <TabsContent value="motor">
@@ -26,15 +28,11 @@ const ControlTaps = () => {
                 <TabsContent value="camera">
                     <CameraNavigationButtons />
                 </TabsContent>
+                <TabsContent value="ultrasonic">
+                    <UltrasonicComponent />
+                </TabsContent>
             </TabsContents>
         </Tabs>
-        // <div className={cn(
-        //     "transition-all duration-300 md:w-1/2 w-full",
-        //     "flex flex-col gap-6"
-        // )}>
-        //     <MotorNavigationButtons />
-        //     <CameraNavigationButtons />
-        // </div>
     )
 }
 
