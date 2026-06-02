@@ -1,19 +1,24 @@
+export type UltrasonicResponse = {
+    front: string;
+    right: string;
+    left: string;
+};
+
 function extractPreContent(html: string) {
     const match = html.match(/<pre>([\s\S]*?)<\/pre>/i);
     return match ? match[1] : html;
 }
 
-async function safeFetch<T>(fetchPromise: Promise<Response>): Promise<T & { error?: string }> {
+async function safeFetch<T>(fetchPromise: Promise<Response>): Promise<T | { error: string; }> {
     try {
         const res = await fetchPromise;
         if (!res.ok) {
             const text = await res.text().catch(() => "");
-            return { ERROR: `Endpoint returned ${res.status}: ${extractPreContent(text)}` } as any;
+            return { error: `Endpoint returned ${res.status}: ${extractPreContent(text)}` } as any;
         }
-        return await res.json();
+        return await res.json() as T;
     } catch (err: any) {
-        console.error("Fetch failed:", err);
-        return { ERROR: `[UNEXPECTED ERROR] ${err.message}` } as any;
+        return { error: `[UNEXPECTED ERROR] ${err.message}` } as any;
     }
 }
 
@@ -80,7 +85,7 @@ export const PumpStatus = (BASE: string) =>
 
 // Ultrasonic Control
 export const UltrasonicDistance = (BASE: string) =>
-    safeFetch(fetch(`${BASE}/ultrasonic/scan`, { method: "GET", cache: 'no-store' }));
+    safeFetch<UltrasonicResponse>(fetch(`${BASE}/ultrasonic/scan`, { method: "GET", cache: 'no-store' }));
 
 
 // --- Video Feed ---

@@ -1,17 +1,19 @@
 import { Siren } from "lucide-react";
 import { BsCameraVideo } from "react-icons/bs";
 import { FaAngleDoubleUp } from "react-icons/fa";
-import { MdOutlineBlurOff } from "react-icons/md";
+import { MdClear, MdOutlineBlurOff } from "react-icons/md";
 import { TbArrowMoveUp, TbBoxAlignTop, TbBoxAlignTopFilled, TbCloudDataConnection, TbZoomPan } from "react-icons/tb";
 import { GrZoomIn, GrZoomOut } from "react-icons/gr";
 import { RiDragMoveLine } from "react-icons/ri";
 import { PiTireDuotone } from "react-icons/pi";
+import { GiRadarSweep } from "react-icons/gi";
 
 
 const System = {
     Header: {},
     IPSearch: {},
     ConnectOnline: TbCloudDataConnection,
+    Clear: MdClear,
 }
 
 const Titles = {
@@ -38,9 +40,9 @@ const Controls = {
             Min_Zoom: GrZoomOut,
         }
     },
-    // Ultrasonic: {
-    //     Dis
-    // }
+    Ultrasonic: {
+        Scan: GiRadarSweep,
+    }
 }
 
 export const Icons = {
