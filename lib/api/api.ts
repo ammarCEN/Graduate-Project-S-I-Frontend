@@ -43,16 +43,16 @@ export const motorStop = (BASE: string) =>
 
 
 // --- Camera Control ---
-export const cameraMoveUp = (BASE: string, speed = 50) =>
+export const cameraMoveDown = (BASE: string, speed = 50) =>
     safeFetch(fetch(`${BASE}/camera/ptz/move?direction=up&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
-export const cameraMoveDown = (BASE: string, speed = 50) =>
+export const cameraMoveUp = (BASE: string, speed = 50) =>
     safeFetch(fetch(`${BASE}/camera/ptz/move?direction=down&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
-export const cameraMoveRight = (BASE: string, speed = 50) =>
+export const cameraMoveLeft = (BASE: string, speed = 50) =>
     safeFetch(fetch(`${BASE}/camera/ptz/move?direction=right&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
-export const cameraMoveLeft = (BASE: string, speed = 50) =>
+export const cameraMoveRight = (BASE: string, speed = 50) =>
     safeFetch(fetch(`${BASE}/camera/ptz/move?direction=left&speed=${speed}`, { method: "POST", cache: 'no-store' }));
 
 export const cameraSetCenter = (BASE: string) =>
