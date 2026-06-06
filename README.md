@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# <img src="https://raw.githubusercontent.com/ammarCEN/Graduate-Project-S-I-Frontend/refs/heads/master/public/SAQI-Logo.png" width="40" align="center"> SAQI Frontend
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+### Smart Agriculture Through Autonomous Plant Care
+
+Frontend application for **SAQI**, a solar-powered autonomous robot designed to monitor and water plants efficiently.
+
+🚀 **Live Demo**
+[Click here](https://graduate-project-s-i-frontend-fa7au5h92-ksu-projects.vercel.app/)
+
+</div>
+
+
+
+## 📖 Overview
+
+SAQI is a graduation project focused on developing an autonomous mobile robot capable of monitoring plant conditions and performing watering operations when needed.
+
+The system integrates robotics, computer vision, embedded systems, and sustainable energy technologies to provide an intelligent solution for smart farming and modern agriculture.
+
+This repository contains the frontend web application responsible for visualizing system information and providing a modern user interface for interacting with the SAQI platform.
+
+
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Technology   | Purpose             |
+| ------------ | ------------------- |
+| Next.js      | Frontend Framework  |
+| React        | UI Development      |
+| TypeScript   | Type Safety         |
+| Tailwind CSS | Styling             |
+| FastAPI      | Backend Integration |
+| REST API     | Data Communication  |
+| Vercel       | Deployment Platform |
+
+</div>
+
+
+
+## ✨ Features
+
+* 📊 Modern dashboard interface
+* 🌱 Plant monitoring visualization
+* 🤖 Robot status tracking
+* 🔄 Real-time backend communication
+* 📱 Responsive design
+* ⚡ Fast and optimized performance
+
+
+
+## 🚀 Getting Started
 
 ```bash
+## Clone the Repository
+git clone https://github.com/ammarCEN/Graduate-Project-S-I-Frontend.git
+
+## Head to repository file
+cd Graduate-Project-S-I-Frontend
+
+## Install Dependencies
+npm install
+
+## Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 🎓 Graduation Project
 
-To learn more about Next.js, take a look at the following resources:
+SAQI demonstrates the practical application of:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Robotics
+* Embedded Systems
+* Computer Vision
+* Artificial Intelligence
+* Sustainable Agriculture
+* Renewable Energy Technologies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<div align="center">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🌿 SAQI — SOLAR-POWERED AUTONOMOUS QUANTIFIED IRRIGATION
+
+Built as a Graduation Project to support sustainable and intelligent agriculture.
+
+</div>
