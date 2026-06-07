@@ -4,7 +4,7 @@
 
 ### Smart Agriculture Through Autonomous Plant Care
 
-Frontend application for **SAQI**, a solar-powered autonomous robot designed to monitor and water plants efficiently.
+Frontend application for **SAQI**, a solar-powered autonomous robot designed to monitor and water plants efficiently.<br>
 🔗 Backend Repository: [Click here](https://github.com/Hj-lh/SAQI)
 
 🚀 **Live Demo**
