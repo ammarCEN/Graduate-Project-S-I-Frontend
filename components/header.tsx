@@ -5,12 +5,16 @@ import ConnectSystem from "./connect-system";
 import Image from "next/image";
 
 const Header = () => {
+    const isProduction = process.env.NODE_ENV === 'production';
+    const base = isProduction
+        ? "/Graduate-Project-S-I-Frontend"
+        : "";
     return (
         <Card className="py-6 px-8">
             <div className="flex justify-between item-center items-center flex-col gap-6 md:flex-row md:gap-2">
                 <div className="flex items-center gap-4 flex-col md:flex-row">
                     <Image
-                        src={"/SAQI-Logo.png"}
+                        src={`${base}/SAQI-Logo.png`}
                         alt="SAQI logo alt"
                         height={20}
                         width={65}
