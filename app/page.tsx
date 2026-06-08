@@ -40,6 +40,7 @@ export default function Home() {
       <div
         className={cn(
           "flex flex-col md:flex-row gap-6",
+
           // isVisionOn ? "gap-4" : "gap-8"
         )}
       >
