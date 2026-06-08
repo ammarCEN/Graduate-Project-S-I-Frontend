@@ -50,7 +50,7 @@ export default function Home() {
 
             "p-6",
 
-            // isVisionOn ? "w-[50%]" : "md:w-1/2 w-full"
+            // isVisionOn ? "w-[50%]" : "md:w-1/2 w-full" 
             isVisionOn ? "w-full" : "md:w-1/2 w-full"
           )}
         >
