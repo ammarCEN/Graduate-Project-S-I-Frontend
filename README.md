@@ -8,7 +8,7 @@ Frontend application for **SAQI**, a solar-powered autonomous robot designed to 
 🔗 Backend Repository: [Click here](https://github.com/Hj-lh/SAQI)
 
 🚀 **Live Demo**
-[Click here](https://graduate-project-s-i-frontend-fa7au5h92-ksu-projects.vercel.app/)
+[Click here](https://ammarcen.github.io/Graduate-Project-S-I-Frontend/)
 
 </div>
 
@@ -36,7 +36,7 @@ This repository contains the frontend web application responsible for visualizin
 | Tailwind CSS | Styling             |
 | FastAPI      | Backend Integration |
 | REST API     | Data Communication  |
-| Vercel       | Deployment Platform |
+| GitHub Pages | Deployment Platform |
 
 </div>
 
