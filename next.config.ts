@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
   reactCompiler: true,
+  images: {
+    unoptimized: true,
+  },
   ...(isProduction && {
     basePath: '/Graduate-Project-S-I-Frontend',
     assetPrefix: '/Graduate-Project-S-I-Frontend/',

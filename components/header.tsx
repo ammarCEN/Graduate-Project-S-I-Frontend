@@ -2,16 +2,18 @@ import { ModeToggle } from "@/components/toggle-theme";
 import { Card } from "./ui/card";
 import ShowLiveLogs from "./show-live-logs";
 import ConnectSystem from "./connect-system";
+import Image from "next/image";
 
 const Header = () => {
     return (
         <Card className="py-6 px-8">
             <div className="flex justify-between item-center items-center flex-col gap-6 md:flex-row md:gap-2">
                 <div className="flex items-center gap-4 flex-col md:flex-row">
-                    <img
-                        className="h-20"
+                    <Image
                         src={"/SAQI-Logo.png"}
                         alt="SAQI logo alt"
+                        height={20}
+                        width={65}
                     />
                     <h1 className="scroll-m-20 text-center font-extrabold tracking-tight text-balance tracking-widest text-2xl md:text-4xl">SAQI Remote Control</h1>
                 </div>
