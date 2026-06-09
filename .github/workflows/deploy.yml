@@ -26,7 +26,12 @@ jobs:
           node-version: 22
 
       - run: npm ci
-      - run: npm run build
+
+      - name: Build project
+        run: npm run build
+        env:
+          NEXT_PUBLIC_ROBOT_IP_BASE: ${{ secrets.NEXT_PUBLIC_ROBOT_IP_BASE }}
+          NEXT_PUBLIC_SYSTEM_AUTO_CONNECT: ${{ secrets.NEXT_PUBLIC_SYSTEM_AUTO_CONNECT }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
